@@ -1,0 +1,49 @@
+{
+    "dataset": "ISCX VPN-nonVPN",
+    "source_file": "TimeBasedFeatures-Dataset-15s-VPN.arff",
+    "target": "class1",
+    "class_mapping": {
+        "0": "Non-VPN",
+        "1": "VPN"
+    },
+    "feature_names": [
+        "duration",
+        "total_fiat",
+        "total_biat",
+        "min_fiat",
+        "min_biat",
+        "max_fiat",
+        "max_biat",
+        "mean_fiat",
+        "mean_biat",
+        "flowPktsPerSecond",
+        "flowBytesPerSecond",
+        "min_flowiat",
+        "max_flowiat",
+        "mean_flowiat",
+        "std_flowiat",
+        "min_active",
+        "mean_active",
+        "max_active",
+        "std_active",
+        "min_idle",
+        "mean_idle",
+        "max_idle",
+        "std_idle"
+    ],
+    "feature_count": 23,
+    "train_samples": 15004,
+    "test_samples": 3754,
+    "split_method": "StratifiedGroupKFold",
+    "n_splits": 5,
+    "random_state": 42,
+    "unique_feature_vector_groups": 18015,
+    "train_groups": 14314,
+    "test_groups": 3701,
+    "preprocessing": [
+        "Group identical raw feature vectors before splitting",
+        "Stratified grouped five-fold split; first fold used as test",
+        "Median imputation fitted on training data",
+        "StandardScaler fitted on training data"
+    ]
+}

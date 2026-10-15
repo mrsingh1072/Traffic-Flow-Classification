@@ -1,0 +1,21 @@
+{
+    "dataset": "ISCX VPN-nonVPN",
+    "model": "CNN V2",
+    "evaluation_split": "grouped official test",
+    "threshold": 0.5,
+    "accuracy": 0.6387852956846031,
+    "precision_vpn": 0.6091040462427746,
+    "recall_vpn": 0.860204081632653,
+    "f1_vpn": 0.7131979695431472,
+    "false_positive_rate": 0.6031215161649944,
+    "confusion_matrix": [
+        [
+            712,
+            1082
+        ],
+        [
+            274,
+            1686
+        ]
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "experiment": "ISCX CNN V2",
+    "dataset": "ISCX VPN-nonVPN",
+    "training_data": "processed_grouped",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "max_epochs": 30,
+    "patience": 5,
+    "best_epoch": 4,
+    "best_validation_f1": 0.714467327739639,
+    "model_path": "D:\\Traffic-Flow-Classification\\models\\iscx_cnn_v2_best.pth",
+    "history_path": "D:\\Traffic-Flow-Classification\\results\\iscx_cnn_v2_history.json"
+}

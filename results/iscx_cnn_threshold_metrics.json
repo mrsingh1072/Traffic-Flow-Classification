@@ -1,0 +1,20 @@
+{
+    "dataset": "ISCX VPN-nonVPN",
+    "evaluation_split": "official_test",
+    "threshold": 0.6,
+    "accuracy": 0.7046908315565032,
+    "precision_vpn": 0.6965357967667436,
+    "recall_vpn": 0.7697805002552323,
+    "f1_vpn": 0.7313288069835111,
+    "false_positive_rate": 0.3664249860568879,
+    "confusion_matrix": [
+        [
+            1136,
+            657
+        ],
+        [
+            451,
+            1508
+        ]
+    ]
+}

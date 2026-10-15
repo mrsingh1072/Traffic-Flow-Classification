@@ -1,0 +1,23 @@
+
+# Python environment
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Raw datasets
+datasets/**/*.csv
+datasets/**/*.arff
+
+# Generated processed datasets
+datasets/**/*.npz
+
+# Temporary files
+*.log
+*.tmp

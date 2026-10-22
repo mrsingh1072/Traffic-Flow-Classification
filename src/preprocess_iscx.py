@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import io
+import joblib
 
 import arff
 import numpy as np
@@ -194,3 +195,11 @@ print("\nGrouped preprocessing complete!")
 print("All training values finite:", np.isfinite(X_train_processed).all())
 print("All test values finite:", np.isfinite(X_test_processed).all())
 print("Saved to:", OUTPUT_DIR)
+
+# Save fitted preprocessing pipeline for inference
+joblib.dump(
+    preprocessor,
+    OUTPUT_DIR / "preprocessor.joblib"
+)
+
+print("Saved preprocessor:", OUTPUT_DIR / "preprocessor.joblib")

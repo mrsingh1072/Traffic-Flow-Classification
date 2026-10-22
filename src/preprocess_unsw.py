@@ -1,6 +1,7 @@
 
 from pathlib import Path
 import json
+import joblib
 
 import numpy as np
 import pandas as pd
@@ -149,3 +150,11 @@ print("Testing labels:", np.bincount(y_test_array))
 print("Training dtype:", X_train_processed.dtype)
 print("Testing dtype:", X_test_processed.dtype)
 print("Saved files to:", OUTPUT_DIR)
+
+# Save fitted preprocessing pipeline for inference
+joblib.dump(
+    preprocessor,
+    OUTPUT_DIR / "preprocessor.joblib"
+)
+
+print("Saved preprocessor:", OUTPUT_DIR / "preprocessor.joblib")

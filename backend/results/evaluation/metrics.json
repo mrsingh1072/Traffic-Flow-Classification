@@ -1,0 +1,10 @@
+{
+  "dataset": "UNSW_NB15",
+  "model": "TrafficCNN-1D",
+  "test_samples": 82332,
+  "accuracy": 0.7084244279259583,
+  "precision_macro": 0.5139152766413517,
+  "recall_macro": 0.4517287150913555,
+  "f1_macro": 0.40839169047909757,
+  "f1_weighted": 0.7395210938425928
+}

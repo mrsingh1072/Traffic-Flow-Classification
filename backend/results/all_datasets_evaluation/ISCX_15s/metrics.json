@@ -1,0 +1,9 @@
+{
+  "dataset": "ISCX_15s",
+  "test_samples": 3615,
+  "accuracy": 0.6096818810511757,
+  "precision_macro": 0.5676204502269274,
+  "recall_macro": 0.510072061370609,
+  "f1_macro": 0.5068837106718069,
+  "f1_weighted": 0.5975782899549239
+}

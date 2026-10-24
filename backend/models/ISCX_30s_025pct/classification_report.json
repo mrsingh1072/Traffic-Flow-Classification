@@ -1,0 +1,99 @@
+{
+  "BROWSING": {
+    "precision": 0.5772994129158513,
+    "recall": 0.59,
+    "f1-score": 0.5835806132542037,
+    "support": 500.0
+  },
+  "CHAT": {
+    "precision": 0.4625,
+    "recall": 0.3135593220338983,
+    "f1-score": 0.37373737373737376,
+    "support": 118.0
+  },
+  "FT": {
+    "precision": 0.7027027027027027,
+    "recall": 0.4936708860759494,
+    "f1-score": 0.5799256505576208,
+    "support": 158.0
+  },
+  "MAIL": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 15.0
+  },
+  "P2P": {
+    "precision": 0.6030150753768844,
+    "recall": 0.6030150753768844,
+    "f1-score": 0.6030150753768844,
+    "support": 199.0
+  },
+  "STREAMING": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 62.0
+  },
+  "VOIP": {
+    "precision": 0.6216931216931217,
+    "recall": 0.818815331010453,
+    "f1-score": 0.706766917293233,
+    "support": 287.0
+  },
+  "VPN-BROWSING": {
+    "precision": 0.43039591315453385,
+    "recall": 0.674,
+    "f1-score": 0.5253312548713952,
+    "support": 500.0
+  },
+  "VPN-CHAT": {
+    "precision": 0.41346153846153844,
+    "recall": 0.2905405405405405,
+    "f1-score": 0.3412698412698413,
+    "support": 148.0
+  },
+  "VPN-FT": {
+    "precision": 0.5562130177514792,
+    "recall": 0.4177777777777778,
+    "f1-score": 0.47715736040609136,
+    "support": 225.0
+  },
+  "VPN-MAIL": {
+    "precision": 0.25,
+    "recall": 0.1780821917808219,
+    "f1-score": 0.208,
+    "support": 73.0
+  },
+  "VPN-P2P": {
+    "precision": 0.5058823529411764,
+    "recall": 0.3467741935483871,
+    "f1-score": 0.41148325358851673,
+    "support": 124.0
+  },
+  "VPN-STREAMING": {
+    "precision": 0.5555555555555556,
+    "recall": 0.5,
+    "f1-score": 0.5263157894736842,
+    "support": 60.0
+  },
+  "VPN-VOIP": {
+    "precision": 0.7611940298507462,
+    "recall": 0.5907335907335908,
+    "f1-score": 0.6652173913043479,
+    "support": 259.0
+  },
+  "accuracy": 0.5417888563049853,
+  "macro avg": {
+    "precision": 0.45999376574311357,
+    "recall": 0.4154977792055931,
+    "f1-score": 0.4287000372237995,
+    "support": 2728.0
+  },
+  "weighted avg": {
+    "precision": 0.5372719397008497,
+    "recall": 0.5417888563049853,
+    "f1-score": 0.5282162096684758,
+    "support": 2728.0
+  }
+}

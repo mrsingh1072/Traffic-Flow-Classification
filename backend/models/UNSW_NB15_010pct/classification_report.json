@@ -1,0 +1,75 @@
+{
+  "Analysis": {
+    "precision": 0.1111111111111111,
+    "recall": 0.13901345291479822,
+    "f1-score": 0.12350597609561753,
+    "support": 446.0
+  },
+  "Backdoor": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 346.0
+  },
+  "DoS": {
+    "precision": 0.3924050632911392,
+    "recall": 0.018044237485448197,
+    "f1-score": 0.03450194769059544,
+    "support": 1718.0
+  },
+  "Exploits": {
+    "precision": 0.6766266103713326,
+    "recall": 0.8213957155999474,
+    "f1-score": 0.7420159088210851,
+    "support": 7609.0
+  },
+  "Fuzzers": {
+    "precision": 0.24349308332786992,
+    "recall": 0.7676725919801571,
+    "f1-score": 0.36971778408242495,
+    "support": 4838.0
+  },
+  "Generic": {
+    "precision": 0.923141186299081,
+    "recall": 0.6043204812687996,
+    "f1-score": 0.7304577755742853,
+    "support": 3657.0
+  },
+  "Normal": {
+    "precision": 0.9805321771656891,
+    "recall": 0.6743846108869789,
+    "f1-score": 0.7991408577565302,
+    "support": 34206.0
+  },
+  "Reconnaissance": {
+    "precision": 0.4132231404958678,
+    "recall": 0.7399186089530152,
+    "f1-score": 0.5302929868752486,
+    "support": 2703.0
+  },
+  "Shellcode": {
+    "precision": 0.48,
+    "recall": 0.06349206349206349,
+    "f1-score": 0.11214953271028037,
+    "support": 378.0
+  },
+  "Worms": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 44.0
+  },
+  "accuracy": 0.6677808561980516,
+  "macro avg": {
+    "precision": 0.4220532372062091,
+    "recall": 0.3828241762581207,
+    "f1-score": 0.34417827696060677,
+    "support": 55945.0
+  },
+  "weighted avg": {
+    "precision": 0.8090905708987591,
+    "recall": 0.6677808561980516,
+    "f1-score": 0.6976766902076112,
+    "support": 55945.0
+  }
+}

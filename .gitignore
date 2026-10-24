@@ -1,4 +1,3 @@
-
 # Python environment
 venv/
 .venv/
@@ -11,6 +10,11 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
 # Raw datasets
 datasets/**/*.csv
 datasets/**/*.arff
@@ -18,6 +22,22 @@ datasets/**/*.arff
 # Generated processed datasets
 datasets/**/*.npz
 
-# Temporary files
+# Python and testing caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Temporary files and logs
 *.log
 *.tmp
+
+# Frontend dependencies and build output
+node_modules/
+dist/
+coverage/
+
+# Local environment files
+*.swp
+*.swo

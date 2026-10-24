@@ -2,6 +2,7 @@ from pathlib import Path
 import csv
 import re
 import warnings
+import joblib
 
 import numpy as np
 import pandas as pd
@@ -294,6 +295,16 @@ def fit_save(name, train_df, val_df, test_df, target):
 
     output = OUT / name
     output.mkdir(parents=True, exist_ok=True)
+
+    joblib.dump(
+    {
+        "preprocessor": preprocessor,
+        "feature_columns": used,
+        "classes": label_encoder.classes_.astype(str).tolist(),
+        "target": target,
+    },
+    output / "preprocessor.joblib",
+)
 
     np.savez_compressed(
         output / "data.npz",

@@ -1,0 +1,9 @@
+{
+  "dataset": "UNSW_NB15",
+  "test_samples": 55945,
+  "accuracy": 0.719599606756636,
+  "precision_macro": 0.5384719402023338,
+  "recall_macro": 0.44382266181327584,
+  "f1_macro": 0.4097389086176178,
+  "f1_weighted": 0.7427570033958157
+}

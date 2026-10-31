@@ -287,7 +287,7 @@ export function ClassifierPage() {
                         <select id="demo-example" className="select" value={exampleIndex} disabled={busy} onChange={e => setExampleIndex(Number(e.target.value))}>
                           {samples.map((sample, index) => <option key={sample.label} value={index}>{sample.label}</option>)}
                         </select>
-                        <button type="button" className="btn btn-secondary" onClick={loadExample} disabled={busy || !examplesMatchSchema}>Load example <ArrowRight size={15} /></button>
+                        <button type="button" className="btn btn-secondary" onClick={loadExample} disabled={busy || !examplesMatchSchema}>Load sample <ArrowRight size={15} /></button>
                       </div>
                     </div>
                     {sampleLabels.length > 0 && <p className="example-status" role="status">Example loaded · {schema.required_feature_count} features · Dataset label: <strong>{sampleLabels[0]}</strong>.</p>}

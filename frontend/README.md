@@ -42,7 +42,7 @@ Canonical routes: `#/overview`, `#/classifier`, and `#/about`. Native links pres
 ## Presenting the classifier
 
 1. Open **Traffic Classifier** and choose a dataset.
-2. In **Single record**, select a demo record and choose **Load example**.
+2. In **Single record**, select a demo record and choose **Load sample**.
 3. Choose **Classify traffic**. The result displays the model prediction, class scores, and the record's known dataset label. Predictions can disagree with that label.
 4. Expand **Review or edit features** only when you want to inspect or change the measured inputs. Editing removes the known-label comparison, since the edited record is no longer the original example.
 

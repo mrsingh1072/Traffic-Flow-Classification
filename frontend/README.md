@@ -31,15 +31,13 @@ npm run preview -- --host 127.0.0.1 --port 5173 --strictPort
 
 Build output is in `dist/`. A preview on port 5173 matches the backend's default CORS allowlist. The frontend needs a reachable API; a static deployment does not host the Python backend. Production configuration should use an HTTPS API URL accessible to the user's browser.
 
-Canonical routes: `#/overview`, `#/classifier`, `#/datasets`, and `#/about`. Native links preserve refresh and browser back/forward behavior. Retired `#/evaluation` bookmarks redirect to About.
+Canonical routes: `#/overview`, `#/classifier`, and `#/about`. Native links preserve refresh and browser back/forward behavior. Retired `#/evaluation` bookmarks redirect to About.
 
 ## Workspaces
 
 - Overview: API-reported dataset availability, evaluated test sample totals, accuracy and macro F1, and navigation into the tools.
 - Traffic Classifier: dataset-specific raw schema, single-record forms, batch JSON entry/import, schema-template download, record selection, class scores, and JSON result export. Batches accept 1–100 objects, matching the existing API.
 - About: TrafficCNN-1D architecture, the classification pipeline, held-out methodology, and API-backed accuracy and macro precision/recall/F1 for the five dataset configurations. Detailed per-class reports and confusion matrices remain available through the backend API.
-- Dataset Explorer: configured dataset inventory, independent checkpoint/preprocessor availability, raw feature counts and types, test samples, and evaluated class labels.
-- About: research scope, architecture, limitations, and existing API reference.
 
 ## Presenting the classifier
 
@@ -62,7 +60,7 @@ Black Signal design: near-black canvas, grayscale workspaces, restrained signal-
 
 Overview uses a custom interactive SVG logical globe with selectable UE/gNB/core/destination nodes, a contextual inspector, orbit control, control-plane visibility, reset, and a finite user-triggered packet trace. It is explicitly illustrative, not geographical observations or live monitoring. Motion for React handles controlled path reveals, packet movement, navigation, and page transitions; reduced-motion preferences disable spatial animation. No reference screenshots are embedded in the product.
 
-All four workspaces support dark and light themes. About presents a concise evaluation summary from the backend API. Desktop navigation is horizontal; mobile has an accessible menu. Large headings adapt to smaller viewports; tables scroll within their own containers.
+All three workspaces support dark and light themes. About presents a concise evaluation summary from the backend API. Desktop navigation is horizontal; mobile has an accessible menu. Large headings adapt to smaller viewports; tables scroll within their own containers.
 
 See [design references and decisions](DESIGN.md) and the screenshots in `previews/`.
 

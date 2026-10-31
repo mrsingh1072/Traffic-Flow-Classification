@@ -9,16 +9,12 @@ import { pageFromHash, PAGE_PATHS } from "./routes";
 const ClassifierPage = lazy(() =>
   import("./pages/ClassifierPage").then((m) => ({ default: m.ClassifierPage })),
 );
-const ExplorerPage = lazy(() =>
-  import("./pages/ExplorerPage").then((m) => ({ default: m.ExplorerPage })),
-);
 const AboutPage = lazy(() =>
   import("./pages/AboutPage").then((m) => ({ default: m.AboutPage })),
 );
 const pages = {
   overview: OverviewPage,
   classifier: ClassifierPage,
-  datasets: ExplorerPage,
   about: AboutPage,
 };
 function currentPage(): Page {

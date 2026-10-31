@@ -2,7 +2,7 @@ import { ThemeToggle } from "../ThemeToggle";
 import { Menu } from "lucide-react";
 import type { HealthResponse } from "../../services/api";
 import type { Page } from "../../types";
-const titles: Record<Page, string> = {overview:"Overview",classifier:"Traffic Classifier",datasets:"Dataset Explorer",about:"About"};
+const titles: Record<Page, string> = {overview:"Overview",classifier:"Traffic Classifier",about:"About"};
 export function TopBar({activePage,health,healthLoading,healthError,onMobileMenu}:{activePage:Page;health:HealthResponse|null;healthLoading:boolean;healthError:string|null;onMobileMenu:()=>void}){
   const online=!!health&&!healthError;
   const label=healthLoading&&!health?"Checking backend…":online?"Backend online":"Backend offline";

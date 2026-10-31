@@ -2,7 +2,6 @@ import { ThemeToggle } from "../ThemeToggle";
 import {
   LayoutDashboard,
   ScanLine,
-  Database,
   Info,
   X,
 } from "lucide-react";
@@ -14,7 +13,6 @@ import { PAGE_PATHS } from "../../routes";
 const items = [
   { id: "overview", label: "Overview", Icon: LayoutDashboard },
   { id: "classifier", label: "Traffic Classifier", Icon: ScanLine },
-  { id: "datasets", label: "Dataset Explorer", Icon: Database },
   { id: "about", label: "About", Icon: Info },
 ] as const;
 

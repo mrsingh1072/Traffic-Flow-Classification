@@ -1,11 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { pageFromHash, PAGE_PATHS } from "../src/routes.ts";
-test("All four navigation routes resolve to their intended page", () => {
+test("All three navigation routes resolve to their intended page", () => {
   for (const page of [
     "overview",
     "classifier",
-    "datasets",
     "about",
   ])
     assert.equal(pageFromHash("#/" + page), page);
@@ -16,14 +15,11 @@ test("Classifier slash URLs never fall back to Overview", () => {
 });
 test("Existing bookmarks retain their destination", () => {
   assert.equal(pageFromHash("#classifier"), "classifier");
-  assert.equal(pageFromHash("#explorer"), "datasets");
-  assert.equal(pageFromHash("#/explorer"), "datasets");
 });
 test("Every navigation destination has a canonical slash URL", () => {
   assert.deepEqual(Object.values(PAGE_PATHS), [
     "#/overview",
     "#/classifier",
-    "#/datasets",
     "#/about",
   ]);
 });
@@ -35,4 +31,9 @@ test("Root, malformed, and prototype names resolve safely", () => {
 test("Retired evaluation bookmarks redirect to About", () => {
   for (const hash of ["#evaluation", "#/evaluation", "#/evaluation/"])
     assert.equal(pageFromHash(hash), "about");
+});
+
+test("Removed dataset routes fall back to Overview", () => {
+  for (const hash of ["#datasets", "#/datasets", "#/datasets/", "#explorer", "#/explorer"])
+    assert.equal(pageFromHash(hash), "overview");
 });

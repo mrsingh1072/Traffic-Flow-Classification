@@ -25,4 +25,4 @@ export const DATASET_DESCRIPTIONS: Record<DatasetKey, string> = {
 };
 
 export type Page =
-  "overview" | "classifier" | "datasets" | "about";
+  "overview" | "classifier" | "about";

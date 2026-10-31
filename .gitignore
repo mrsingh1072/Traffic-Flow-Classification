@@ -33,6 +33,10 @@ htmlcov/
 *.log
 *.tmp
 
+# Generated training traces (retain final metrics, reports and checkpoints)
+evaluation_results/**/training_history.csv
+evaluation_results/**/validation_selection.csv
+
 # Frontend dependencies and build output
 node_modules/
 dist/

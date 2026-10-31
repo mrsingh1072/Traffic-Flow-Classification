@@ -97,7 +97,7 @@ export default function App() {
               TrafficFlow <span className="footer-divider">/</span> CNN-based
               traffic classification
             </span>
-            {activePage !== "overview" && (
+            {activePage !== "classifier" && activePage !== "overview" && (
               <span lang="sa" className="cultural-signature" title="The world is one family">वसुधैव कुटुम्बकम्</span>
             )}
           </footer>

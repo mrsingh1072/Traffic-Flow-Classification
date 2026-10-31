@@ -8,8 +8,8 @@ export function TopBar({activePage,health,healthLoading,healthError,onMobileMenu
   const label=healthLoading&&!health?"Checking backend…":online?"Backend online":"Backend offline";
   return <header className={`topbar${activePage === "overview" ? " overview-topbar" : ""}`}>
     <button className="btn btn-ghost btn-icon" id="mobile-menu-btn" onClick={onMobileMenu} aria-label="Open navigation menu"><Menu size={19}/></button>
-    {activePage === "overview" ? <span className="toolbar-signature" lang="sa" title="The world is one family">वसुधैव कुटुम्बकम्</span> : <span className="toolbar-page">{titles[activePage]}</span>}
-    {activePage !== "overview" && <div className={`backend-state ${online?"online":"offline"}`} role="status" title={healthError||undefined}><span className="connection-dot"/>{label}</div>}
+    {activePage === "overview" || activePage === "classifier" ? <span className="toolbar-signature" lang="sa" title="The world is one family">वसुधैव कुटुम्बकम्</span> : <span className="toolbar-page">{titles[activePage]}</span>}
+    {activePage !== "overview" && activePage !== "classifier" && <div className={`backend-state ${online?"online":"offline"}`} role="status" title={healthError||undefined}><span className="connection-dot"/>{label}</div>}
     <ThemeToggle className="mobile-theme-toggle" />
   </header>;
 }

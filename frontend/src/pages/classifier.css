@@ -30,3 +30,75 @@
   .classifier-page .form-submit { flex-wrap: wrap; gap: 16px; }
   .classifier-page .form-submit .btn-primary { width: 100%; justify-content: center; }
 }
+/* Classifier-only workspace refinements. */
+.classifier-page .page-heading { margin-bottom: 28px; }
+.classifier-page .page-heading p { max-width: 760px; line-height: 1.65; }
+.classifier-page .dataset-picker { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding-bottom: 24px; margin-bottom: 28px; }
+.classifier-page .dataset-tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 5px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+html[data-theme] .classifier-page .dataset-tab { padding: 10px 18px; font-size: 14px; font-weight: 500; border: 1px solid transparent; border-radius: 5px; background: transparent; color: var(--muted); box-shadow: none; }
+html[data-theme] .classifier-page .dataset-tab.selected { background: var(--surface-subtle); color: var(--text); border-color: var(--border); box-shadow: inset 0 -2px var(--accent); }
+html[data-theme] .classifier-page .dataset-tab:hover { color: var(--text); background: var(--surface-subtle); }
+.classifier-page .dataset-tab .status-dot { display: none; }
+.classifier-page .classifier-layout { grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 28px; }
+.classifier-page .classifier-input { padding: 28px; border-radius: 8px; }
+.classifier-page .section-header h3, .classifier-page .results-heading { font: 600 20px/1.4 var(--font-sans); letter-spacing: -.025em; }
+.classifier-page .results-heading { margin-bottom: 16px; }
+.classifier-page .section-header .small { margin-top: 5px; font-size: 13px; }
+.classifier-page .classifier-example { border: 1px solid var(--border); border-radius: 6px; padding: 20px; margin-top: 24px; }
+.classifier-page .example-copy h4 { font-size: 16px; }
+.classifier-page .example-copy p { margin-top: 5px; line-height: 1.6; }
+.classifier-page .example-actions { margin-top: 16px; }
+.classifier-page .manual-features { border: 1px solid var(--border); border-radius: 6px; margin-top: 22px; }
+.classifier-page .manual-features summary { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 17px; font-size: 15px; list-style: none; }
+.classifier-page .manual-features summary::-webkit-details-marker { display: none; }
+.classifier-page .manual-features summary svg { margin-left: auto; order: 3; transition: transform .18s; }
+.classifier-page .manual-features[open] summary svg { transform: rotate(180deg); }
+.classifier-page .manual-features[open] summary { border-bottom: 1px solid var(--border); }
+.classifier-page .manual-features summary span { margin-left: 0; font-size: 12px; }
+.classifier-page .manual-features > .input-help { padding: 16px 17px 0; font-size: 13px; line-height: 1.65; }
+.classifier-page .feature-scroll { padding: 0 17px 18px; max-height: 480px; }
+.classifier-page .form-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 16px; }
+.classifier-page .input-label { font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+.classifier-page .input-label span { font-size: 11px; }
+.classifier-page .feature-group-heading { font: 600 15px/1.5 var(--font-sans); }
+.classifier-page .input, .classifier-page .select { font-size: 14px; border-radius: 5px; min-width: 0; }
+.classifier-page .input-validation { margin-top: 18px; color: var(--muted); font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.classifier-page .input-validation.invalid { color: var(--muted); }
+.classifier-page .form-submit { margin-top: 20px; padding-top: 22px; gap: 18px; flex-wrap: wrap; }
+.classifier-page .form-submit > span { font-size: 12px; }
+.classifier-page .btn:disabled { opacity: .45; cursor: not-allowed; }
+.classifier-page .result-empty { min-height: 280px; padding: 30px; border-radius: 8px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+html[data-theme] .classifier-page .result-empty-icon { width: 44px; height: 44px; margin-bottom: 20px; border-radius: 8px; border: 1px solid var(--border); color: var(--muted); background: var(--surface-subtle); transform: none; }
+.classifier-page .result-empty-icon svg { transform: none; }
+.classifier-page .result-empty h3 { font: 600 21px/1.4 var(--font-sans); letter-spacing: -.02em; }
+.classifier-page .result-empty p { font-size: 14px; line-height: 1.75; max-width: 330px; margin: 10px 0 0; }
+.classifier-page .result-empty .btn { margin-top: 20px; }
+.classifier-page .result-panel { border-radius: 8px; padding: 28px; }
+.classifier-page .result-class { font: 600 clamp(28px,3vw,40px)/1.25 var(--font-sans); letter-spacing: -.035em; margin-top: 20px; }
+.classifier-page .confidence strong { font-size: 32px; }
+.classifier-page .sample-comparison { background: var(--surface-subtle); padding: 16px; border: 1px solid var(--border); border-radius: 5px; }
+.classifier-page .sample-comparison p { font-size: 13px; line-height: 1.65; }
+.classifier-page .score-row { font-size: 13px; }
+.classifier-page .score-row > div:first-child { gap: 15px; }
+.classifier-page .score-row span:first-child { overflow-wrap: anywhere; }
+.classifier-page .prob-bar-fill { transition: width .3s ease; }
+.classifier-page .batch-toolbar { gap: 8px; padding-top: 22px; }
+.classifier-page .batch-toolbar .btn { font-size: 12px; padding: 9px 11px; }
+.classifier-page .batch-guidance, .classifier-page .input-help { font-size: 13px; line-height: 1.65; }
+.classifier-page .json-editor { width: 100%; min-height: 270px; line-height: 1.7; tab-size: 2; padding: 16px; resize: vertical; }
+.classifier-page .batch-success { font-size: 13px; color: var(--muted); margin: 12px 0; }
+@media(max-width:1000px) {
+ .classifier-page .classifier-layout { grid-template-columns: minmax(0,1fr); }
+ .classifier-page .classifier-result { position: static; }
+}
+@media(max-width:600px) {
+ .classifier-page .classifier-input, .classifier-page .result-panel { padding: 20px; }
+ .classifier-page .dataset-tabs { width: 100%; }
+ html[data-theme] .classifier-page .dataset-tab { flex: 1 0 auto; padding: 10px 12px; font-size: 13px; }
+ .classifier-page .classifier-example { padding: 16px; }
+ .classifier-page .form-grid { grid-template-columns: minmax(0,1fr); }
+ .classifier-page .result-empty { padding: 24px; min-height: 240px; }
+ .classifier-page .manual-features summary span { display: inline; margin: 0; }
+}
+@media(prefers-reduced-motion:reduce) { .classifier-page *, .classifier-page *::before { transition: none !important; } }
+.classifier-page .json-editor[aria-invalid="true"] { border-color: var(--accent); }

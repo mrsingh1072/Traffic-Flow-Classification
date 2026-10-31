@@ -1,11 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { pageFromHash, PAGE_PATHS } from "../src/routes.ts";
-test("All five acceptance routes resolve to their intended page", () => {
+test("All four navigation routes resolve to their intended page", () => {
   for (const page of [
     "overview",
     "classifier",
-    "evaluation",
     "datasets",
     "about",
   ])
@@ -24,7 +23,6 @@ test("Every navigation destination has a canonical slash URL", () => {
   assert.deepEqual(Object.values(PAGE_PATHS), [
     "#/overview",
     "#/classifier",
-    "#/evaluation",
     "#/datasets",
     "#/about",
   ]);
@@ -32,4 +30,9 @@ test("Every navigation destination has a canonical slash URL", () => {
 test("Root, malformed, and prototype names resolve safely", () => {
   for (const hash of ["", "#/missing", "#/__proto__", "#/constructor"])
     assert.equal(pageFromHash(hash), "overview");
+});
+
+test("Retired evaluation bookmarks redirect to About", () => {
+  for (const hash of ["#evaluation", "#/evaluation", "#/evaluation/"])
+    assert.equal(pageFromHash(hash), "about");
 });

@@ -1,8 +1,29 @@
-import { InferencePipeline } from "../components/visualizations/InferencePipeline";
-import { ArrowUpRight } from "lucide-react";
-import { PageHeading } from "../components/ui";
+import { useEffect, useState } from "react";
+import { fetchMetrics, getErrorMessage, type DatasetMetrics } from "../services/api";
+import { DATASET_LABELS, type DatasetKey } from "../types";
+import "./about.css";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { PageHeading, LoadingState, ErrorState } from "../components/ui";
 const base = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000";
+const percent = (value: number) => Number.isFinite(value) ? `${(value * 100).toFixed(2)}%` : "Unavailable";
 export function AboutPage() {
+  const [metrics, setMetrics] = useState<DatasetMetrics[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [revision, setRevision] = useState(0);
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
+    setError("");
+    fetchMetrics().then(response => {
+      if (active) setMetrics(response.metrics);
+    }).catch(reason => {
+      if (active) setError(getErrorMessage(reason));
+    }).finally(() => {
+      if (active) setLoading(false);
+    });
+    return () => { active = false; };
+  }, [revision]);
   return (
     <div className="about-layout">
       <PageHeading
@@ -24,10 +45,19 @@ export function AboutPage() {
           120-second flow configurations.
         </p>
       </div>
-      <InferencePipeline />
+      <section className="about-model-section" aria-labelledby="model-evaluation-title">
+        <div className="about-model-heading">
+          <h2 id="model-evaluation-title">Model Architecture &amp; Evaluation</h2>
+          <span className="tag">TrafficCNN-1D</span>
+        </div>
+        <ol className="about-model-pipeline" aria-label="Classification pipeline">
+          {["Dataset", "Preprocessing", "CNN", "Classification"].map((stage, index) => (
+            <li key={stage}><span className="mono">0{index + 1}</span><strong>{stage}</strong>{index < 3 && <ArrowRight size={17} aria-hidden="true" />}</li>
+          ))}
+        </ol>
       <div className="about-columns">
         <section className="about-section">
-          <h3>Model architecture</h3>
+          <h3>TrafficCNN-1D architecture</h3>
           <ul>
             <li>Three Conv1d → BatchNorm → ReLU blocks</li>
             <li>Max pooling and adaptive max pooling</li>
@@ -42,13 +72,26 @@ export function AboutPage() {
             Confidence is a softmax score, not a calibrated probability. A high
             score does not establish that a prediction is correct.
           </p>
-          <p>
-            Evaluation metrics describe held-out test splits. Class support and
-            per-class recall give essential context, especially where
-            minority-class performance differs from aggregate scores.
-          </p>
+          <p>Macro precision, recall and F1 weight each class equally, highlighting performance beyond the most common traffic classes.</p>
         </section>
       </div>
+        <div className="about-evaluation">
+          <h3>Held-out test results</h3>
+          <p className="about-methodology">Saved dataset-specific checkpoints are evaluated on their corresponding held-out test splits, using the fitted training preprocessors and original class mappings. Training and validation records are excluded from these test metrics. Different datasets represent different tasks; their scores are not directly comparable.</p>
+          {loading ? <LoadingState text="Loading evaluation metrics…" /> : error ? <ErrorState title="Evaluation unavailable" message={error} onRetry={() => setRevision(n => n + 1)} /> : metrics.length ? (
+            <div className="table-scroll" tabIndex={0} role="region" aria-label="Dataset evaluation metrics, scroll horizontally on smaller screens">
+              <table className="data-table about-metrics-table">
+                <caption>UNSW-NB15 and ISCX VPN-nonVPN · 100% training-label checkpoints</caption>
+                <thead><tr><th scope="col">Dataset</th><th scope="col">Accuracy</th><th scope="col">Macro Precision</th><th scope="col">Macro Recall</th><th scope="col">Macro F1</th></tr></thead>
+                <tbody>{metrics.map(metric => <tr key={metric.dataset}>
+                  <th scope="row">{DATASET_LABELS[metric.dataset as DatasetKey] ?? metric.dataset}<small>{metric.test_samples.toLocaleString()} test samples</small></th>
+                  <td>{percent(metric.accuracy)}</td><td>{percent(metric.precision_macro)}</td><td>{percent(metric.recall_macro)}</td><td>{percent(metric.f1_macro)}</td>
+                </tr>)}</tbody>
+              </table>
+            </div>
+          ) : <p className="muted">No evaluation metrics are available.</p>}
+        </div>
+      </section>
       <section className="about-section panel">
         <div className="section-header">
           <div>

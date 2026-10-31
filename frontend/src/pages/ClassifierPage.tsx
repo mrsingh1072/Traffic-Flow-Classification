@@ -502,7 +502,7 @@ export function ClassifierPage() {
                   <p className="muted small">
                     {result.dataset} · Class {result.class_id}
                   </p>
-                  {sampleLabels[selected] && <div className="sample-comparison"><span>Dataset label</span><strong>{sampleLabels[selected]}</strong><p>{result.predicted_class === sampleLabels[selected] ? "Prediction matches this example’s label." : "Prediction differs from this example’s label. Models can make mistakes; review Model Evaluation for overall performance."}</p></div>}
+                  {sampleLabels[selected] && <div className="sample-comparison"><span>Dataset label</span><strong>{sampleLabels[selected]}</strong><p>{result.predicted_class === sampleLabels[selected] ? "Prediction matches this example’s label." : "Prediction differs from this example’s label. Models can make mistakes; review the evaluation summary in About for overall performance."}</p></div>}
                   <div className="confidence">
                     <span>Softmax confidence</span>
                     <strong>

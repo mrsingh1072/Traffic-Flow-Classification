@@ -1,0 +1,26 @@
+.about-model-section { margin: 36px 0 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+.about-model-heading { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 28px; }
+.about-model-heading h2 { font: 600 clamp(26px, 2.6vw, 36px)/1.3 var(--font-sans); letter-spacing: -.035em; }
+.about-model-pipeline { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; list-style: none; padding: 20px 0; margin: 0; border-block: 1px solid var(--border); }
+.about-model-pipeline li { display: flex; align-items: center; gap: 12px; font-size: 15px; min-width: 0; }
+.about-model-pipeline .mono { font-size: 12px; color: var(--accent); }
+.about-model-pipeline strong { font-weight: 500; }
+.about-model-pipeline svg { margin-left: auto; flex-shrink: 0; color: var(--muted); }
+.about-model-section .about-columns { margin-top: 30px; }
+.about-model-section .about-section { margin-top: 0; }
+.about-model-section .about-section h3, .about-evaluation h3 { font: 600 22px/1.4 var(--font-sans); letter-spacing: -.02em; }
+.about-evaluation { margin-top: 30px; }
+.about-methodology { max-width: 1000px; margin: 12px 0 24px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+.about-metrics-table { width: 100%; font-size: 16px; font-variant-numeric: tabular-nums; }
+.about-metrics-table caption { text-align: left; padding: 0 0 16px; font-size: 13px; color: var(--muted); }
+.about-metrics-table th { text-transform: none; letter-spacing: 0; white-space: nowrap; }
+.about-metrics-table tbody th { color: var(--text); font-size: 16px; font-weight: 500; border-bottom: 1px solid var(--border); padding: 18px 14px; }
+.about-metrics-table th small { display: block; color: var(--muted); font-size: 12px; font-weight: 400; margin-top: 6px; }
+.about-metrics-table td { white-space: nowrap; }
+@media(max-width:700px) {
+ .about-model-pipeline { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+ .about-model-pipeline li { font-size: 13px; gap: 8px; }
+ .about-model-pipeline svg { width: 14px; }
+ .about-model-heading .tag { font-size: 13px; }
+ .about-methodology { font-size: 15px; }
+}

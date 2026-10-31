@@ -58,7 +58,7 @@ export function OverviewPage() {
           <p>Understand the network. Classify the signal. Turn traffic features into insight with dataset-specific CNN models.</p>
           <div className="signal-actions">
             <a href="#/classifier" className="btn btn-primary">Start Classification <ArrowRight size={17}/></a>
-            <a href="#/evaluation" className="signal-secondary">View Performance <ArrowUpRight size={16}/></a>
+            <a href="#/about" className="signal-secondary">View Performance <ArrowUpRight size={16}/></a>
           </div>
         </div>
         <SignalNetwork />

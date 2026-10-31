@@ -2,7 +2,6 @@ import { ThemeToggle } from "../ThemeToggle";
 import {
   LayoutDashboard,
   ScanLine,
-  ChartNoAxesCombined,
   Database,
   Info,
   X,
@@ -15,7 +14,6 @@ import { PAGE_PATHS } from "../../routes";
 const items = [
   { id: "overview", label: "Overview", Icon: LayoutDashboard },
   { id: "classifier", label: "Traffic Classifier", Icon: ScanLine },
-  { id: "evaluation", label: "Model Evaluation", Icon: ChartNoAxesCombined },
   { id: "datasets", label: "Dataset Explorer", Icon: Database },
   { id: "about", label: "About", Icon: Info },
 ] as const;

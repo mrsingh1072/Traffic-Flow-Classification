@@ -24,7 +24,7 @@ The ISCX dataset experiments use four traffic-flow configurations: 15-second, 30
 - Investigate the effect of training-label availability on model performance.
 - Develop a FastAPI backend for traffic classification.
 - Provide prediction results, confidence scores, and evaluation metrics through API endpoints.
-- Develop a frontend interface in the next phase.
+- Provide a schema-driven frontend for classification and model evaluation.
 
 ## Project Structure
 
@@ -272,20 +272,19 @@ The batch prediction test can also be run using:
 python backend\test_batch.py
 ```
 
-## Phase 5: Frontend Development — Planned
+## Phase 5: Frontend Application
 
-The frontend has not yet been completed. Planned features include:
+The existing React frontend now includes Overview, Traffic Classifier, Model Evaluation, Dataset Explorer, and About workspaces in the Black Signal dark design system with Space Grotesk headings, Inter body, and horizontal desktop navigation. Single and batch predictions use the original FastAPI endpoints and dataset-specific schemas; charts and tables use returned evaluation data. A custom interactive SVG logical globe illustrates 5G components, with a node inspector, orbit control, layer visibility, and user-triggered packet traces, and layouts support desktop and mobile devices.
 
-1. A dashboard showing available datasets and model evaluation metrics.
-2. Dataset selection for traffic classification.
-3. A form for entering traffic-flow features.
-4. A prediction interface connected to the FastAPI backend.
-5. Display of predicted class and confidence score.
-6. Visualization of per-class metrics and confusion matrices.
-7. User-friendly validation and API error messages.
-8. End-to-end testing of the complete application.
+See [frontend setup and verification](frontend/README.md) for complete instructions. With the backend running, start the frontend in a second terminal:
 
-The frontend will communicate with the backend through HTTP API requests. The existing model and preprocessing pipeline will be reused.
+```powershell
+cd frontend
+npm ci
+npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
+```
+
+Set `VITE_API_BASE_URL` using `frontend/.env.example` if the API is hosted elsewhere. `npm run build` runs strict TypeScript checks and creates the production bundle. All five canonical hash routes support reload and browser history. Local validation passed 5 route regression tests, 15 readiness checks, 8 API validation checks, and 48 cross-dataset contract checks. Browser checks covered prediction, batch result selection, evaluation, mobile layouts, and navigation.
 
 ## Limitations and Future Work
 
@@ -293,7 +292,7 @@ The frontend will communicate with the backend through HTTP API requests. The ex
 - Minority classes require further investigation and potentially improved training strategies.
 - Softmax confidence scores are not calibrated probabilities.
 - The current prediction API classifies supplied feature records; it does not directly capture live network traffic.
-- The frontend and end-to-end application testing remain pending.
+- The frontend requires a reachable backend with the existing model and preprocessing artifacts.
 - Production deployment, authentication, security hardening, and monitoring require separate work.
 
 Potential future improvements include class-imbalance handling, hyperparameter tuning, calibration analysis, additional evaluation, and integration with a live traffic-capture pipeline.
@@ -317,6 +316,6 @@ Dataset access and redistribution must comply with the respective dataset terms.
 - **CNN training:** Completed for the current experiment configurations
 - **Model evaluation:** Completed for the reported test splits
 - **FastAPI backend:** Core functionality implemented and tested
-- **Frontend:** Pending
-- **End-to-end integration:** Pending
+- **Frontend:** Implemented; strict TypeScript production build verified
+- **End-to-end integration:** Verified locally against all five dataset configurations
 - **Production deployment:** Pending

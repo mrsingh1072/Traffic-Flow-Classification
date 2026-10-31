@@ -1,0 +1,298 @@
+/* Readability and interaction refinement of the existing Black Signal identity. */
+body { font-size: 18px; line-height: 1.75; }
+.page-body { padding-block: 54px 60px; }
+.page-heading { margin-bottom: 40px; }
+.page-heading h1 { font-size: 52px; }
+.page-heading p { font-size: 19px; max-width: 880px; line-height: 1.75; }
+h2, .section-header h2 { font-size: 34px; }
+h3, .section-header h3 { font-size: 28px; }
+h4 { font-size: 21px; }
+.topbar { height: 46px; }
+.toolbar-page { font-size: 14px; }
+.backend-state { font-size: 13px; margin-left: auto; }
+.sidebar { height: 94px; }
+.sidebar nav { gap: clamp(16px, 2vw, 36px); }
+.nav-item { font-size: 17px; padding-inline: 4px; }
+.nav-item svg { width: 19px; height: 19px; }
+.brand { font-size: 29px; }
+.btn { font-size: 17px; padding: 13px 21px; min-height: 48px; }
+.btn-sm { font-size: 15px; min-height: 42px; padding: 10px 15px; }
+.btn-ghost, .signal-secondary, .text-link, .icon-link { transition: color .18s, background .18s, transform .18s; }
+.btn:active { transform: translateY(1px) scale(.985); }
+.signal-secondary { font-size: 17px; }
+.signal-secondary:hover svg, .text-link:hover svg { transform: translate(2px, -2px); }
+.signal-secondary svg, .text-link svg { transition: transform .18s; }
+.signal-hero { grid-template-columns: minmax(300px, .62fr) minmax(0, 1.65fr); gap: 44px; margin-bottom: 56px; align-items: start; }
+.signal-intro { padding-top: 64px; }
+.signal-intro h1 { font-size: clamp(64px, 4.8vw, 88px); }
+.signal-intro > p { font-size: 19px; line-height: 1.85; margin-top: 32px; max-width: 430px; }
+.signal-kicker { font-size: 13px; letter-spacing: 1.2px; margin-bottom: 32px; }
+.signal-actions { flex-direction: column; align-items: flex-start; margin-top: 36px; gap: 26px; }
+.hero-context { margin-top: 64px; padding-left: 20px; }
+.hero-context > span { font-size: 13px; }
+.hero-context p { font-size: 15px; }
+.network-heading { height: 60px; font-size: 17px; padding-inline: 26px; }
+.network-heading .mono { font-size: 12px; }
+.network-canvas { display: block; min-height: 0; overflow: hidden; }
+.signal-globe { width: 100%; height: auto; max-height: 740px; display: block; }
+.globe-note { font-size: 12px; letter-spacing: .5px; }
+.node-label { font-size: 21px; font-weight: 500; }
+.path-label { font-size: 16px; }
+.globe-node > circle:nth-child(2) { transition: stroke .18s, fill .18s; }
+.globe-node:hover > circle:nth-child(2), .globe-node:focus-visible > circle:nth-child(2) { fill: #29201d; stroke-width: 2; }
+.node-inspector { display: block; padding: 26px; border-top: 1px solid var(--border); }
+.inspector-content { display: grid; grid-template-columns: 82px minmax(160px, .85fr) minmax(0, 1.25fr); gap: 10px 22px; align-items: start; }
+.inspector-label { grid-column: 1 / -1; font-size: 12px; margin-bottom: 8px; }
+.inspector-id { grid-column: 1; grid-row: 2 / 4; margin: 0; font-size: 44px; justify-content: flex-start; gap: 8px; }
+.inspector-id svg { display: none; }
+.node-inspector h3 { grid-column: 2; grid-row: 2; font-size: 24px; line-height: 1.35; }
+.node-role { grid-column: 2; grid-row: 3; font-size: 13px; margin: 0; }
+.node-inspector p { grid-column: 3; grid-row: 2 / 4; font-size: 16px; line-height: 1.8; margin: 0; }
+.node-connections { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 12px; padding-top: 18px; }
+.node-connections > span { display: block; font-size: 13px; margin: 0 8px 0 0; }
+.node-connections button { width: auto; min-height: 42px; border: 1px solid var(--border); padding: 9px 13px; font-size: 14px; gap: 12px; transition: background .18s, border-color .18s; }
+.node-connections button:hover { background: #201a17; border-color: #6f473b; }
+.network-controls { padding: 20px 26px; gap: 20px; }
+.layer-toggle { font-size: 15px; min-height: 44px; }
+.layer-toggle svg { width: 18px; height: 18px; }
+.orbit-control { font-size: 14px; margin-left: auto; }
+.orbit-control input { width: 85px; min-height: 28px; }
+.reset-network { min-width: 42px; min-height: 42px; align-items: center; justify-content: center; }
+.network-disclaimer { padding: 16px 26px; font-size: 12px; gap: 24px; }
+.network-disclaimer p { max-width: 460px; line-height: 1.7; }
+.network-disclaimer > span { font-size: 13px; }
+.overview-workspace { margin-bottom: 56px; }
+.overview-stat, .overview-stat:first-child { padding: 30px; }
+.overview-stat:first-child { padding-left: 0; }
+.stat-label { font-size: 16px; }
+.stat-number { font-size: 48px; margin-top: 14px; }
+.inference-strip { padding: 12px 0 44px; margin-bottom: 58px; }
+.inference-title { margin-bottom: 30px; }
+.inference-title h2 { font-size: 30px; }
+.inference-title > span { font-size: 15px; }
+.inference-strip ol { gap: 30px; }
+.inference-strip li { gap: 17px; }
+.pipeline-icon { width: 52px; height: 52px; }
+.inference-strip strong { font-size: 18px; line-height: 1.4; }
+.inference-strip small { font-size: 14px; line-height: 1.6; }
+.overview-analysis { gap: 46px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.analysis-section + .analysis-section { padding-left: 46px; }
+.overview-chart { height: 340px; }
+.chart-transition { width: 100%; height: 100%; }
+.chart-legend { font-size: 16px; gap: 24px; margin-block: 24px; }
+.chart-caption { font-size: 15px; line-height: 1.8; margin-top: 24px; }
+.data-table, .evaluation-analysis .data-table { font-size: 17px; }
+.data-table th, .evaluation-analysis .data-table th { font-size: 15px; padding: 15px 14px 19px; }
+.data-table td { padding: 20px 14px; }
+.section-header { margin-bottom: 26px; gap: 20px; }
+.text-link { font-size: 17px; }
+.panel { padding: 32px; }
+.dataset-picker { padding-bottom: 30px; margin-bottom: 36px; }
+.dataset-picker .eyebrow { font-size: 16px; }
+.dataset-tabs { gap: 10px; }
+.dataset-tab { font-size: 16px; padding: 14px 23px; }
+.input, .select { font-size: 17px; padding: 13px 15px; }
+.input-label { font-size: 16px; }
+.input-label span { font-size: 13px; }
+.input-help, .muted.small, .small, .quiet-tag { font-size: 15px; line-height: 1.8; }
+.feature-group-heading { font-size: 21px; padding-block: 18px; }
+.feature-group-heading span { font-size: 14px; }
+.form-grid { gap: 23px; }
+.feature-scroll { max-height: 560px; }
+.mode-tabs button { font-size: 17px; }
+.classifier-layout { gap: 36px; }
+.result-empty { padding: 36px; min-height: 390px; }
+.result-empty h3 { font-size: 32px; }
+.result-empty p { font-size: 17px; }
+.result-empty-foot { font-size: 14px !important; }
+.result-class { font-size: 48px; }
+.result-panel .eyebrow { font-size: 16px; }
+.score-row { font-size: 16px; }
+.result-note { font-size: 16px; }
+.metric-strip { margin-block: 30px; }
+.metric-strip > div, .metric-strip > div:first-child { padding: 28px; }
+.metric-strip small { font-size: 16px; }
+.metric-strip strong { font-size: 40px; }
+.evaluation-analysis { gap: 32px; }
+.evaluation-analysis .section-header h3 { font-size: 27px; }
+.evaluation-analysis .table-scroll { max-height: none; }
+.matrix-panel { margin-top: 44px; }
+.matrix-axis, .matrix-legend { font-size: 15px; }
+.matrix-table { font-size: 15px; min-width: 800px; }
+.matrix-table th { font-size: 15px; padding: 10px; }
+.matrix-table td { height: 52px; min-width: 60px; }
+.matrix-table thead th { height: 145px; }
+.explorer-layout { grid-template-columns: 280px minmax(0, 1fr); gap: 36px; }
+.explorer-item { font-size: 18px; padding: 24px; }
+.explorer-item small { font-size: 13px; }
+.explorer-facts strong { font-size: 40px; }
+.explorer-facts small { font-size: 16px; }
+.explorer-layout .availability, .badge, .tag { font-size: 15px; }
+.class-tags { gap: 10px; }
+.about-intro { gap: 40px; margin-block: 48px; padding-bottom: 44px; }
+.about-intro h2 { font-size: 48px; }
+.about-intro p, .about-section p, .about-columns ul { font-size: 18px; line-height: 1.85; }
+.about-section h3 { font-size: 30px; }
+.about-columns { gap: 64px; }
+.app-footer { padding-block: 28px; gap: 24px; font-size: 14px; align-items: center; }
+.app-footer .cultural-signature { margin-left: auto; font-size: 20px; padding: 4px 0 0; flex-shrink: 0; }
+@media (max-width: 1600px) {
+  .signal-hero { grid-template-columns: minmax(295px, .65fr) minmax(0, 1.8fr); gap: 32px; }
+  .signal-intro h1 { font-size: 66px; }
+  .signal-intro > p { font-size: 18px; }
+  .overview-analysis { grid-template-columns: 1fr; gap: 44px; }
+  .analysis-section + .analysis-section { border-left: 0; padding: 44px 0 0; border-top: 1px solid var(--border); }
+  .overview-chart { max-width: 1100px; }
+  .evaluation-analysis { grid-template-columns: 1fr; }
+  .inspector-content { grid-template-columns: 75px minmax(160px, .85fr) minmax(0, 1fr); gap: 10px 18px; }
+  .node-inspector h3 { font-size: 22px; }
+  .node-inspector p { font-size: 16px; }
+  .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1200px) {
+  .sidebar nav { gap: 16px; }
+  .nav-item { font-size: 16px; }
+  .signal-hero { grid-template-columns: 1fr; gap: 36px; }
+  .signal-intro { padding: 0; }
+  .signal-intro h1 { font-size: 76px; max-width: 750px; }
+  .signal-intro > p { max-width: 700px; }
+  .signal-actions { flex-direction: row; align-items: center; }
+  .hero-context { display: none; }
+  .signal-globe { max-height: 720px; }
+  .stat-number { font-size: 42px; }
+  .inference-strip ol { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; }
+  .stage-arrow { display: none; }
+  .classifier-layout { grid-template-columns: 1fr; }
+  .classifier-result { position: static; }
+  .metric-strip > div, .metric-strip > div:first-child { padding: 22px; }
+  .metric-strip strong { font-size: 34px; }
+  .metric-strip small { font-size: 14px; }
+}
+@media (max-width: 960px) {
+  .sidebar { height: 100dvh; width: 300px; }
+  .nav-item { font-size: 18px; padding: 16px 8px; }
+  .sidebar nav { gap: 12px; }
+  .topbar { height: 66px; }
+  .backend-state { margin-left: auto; font-size: 13px; }
+  .toolbar-page { font-size: 15px; }
+  .page-body { padding-block: 38px 44px; }
+  .page-heading h1 { font-size: 46px; }
+  .page-heading p { font-size: 18px; }
+  .about-intro { grid-template-columns: 1fr; }
+  .about-intro h2 { max-width: 730px; grid-row: auto; }
+  .explorer-layout { grid-template-columns: 230px minmax(0, 1fr); gap: 25px; }
+  .explorer-item { font-size: 16px; padding: 20px 16px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 17px; }
+  .topbar { padding-inline: 18px; }
+  .toolbar-page { display: block; font-size: 14px; }
+  .backend-state { font-size: 12px; gap: 6px; }
+  .page-body { padding: 32px 18px 40px; }
+  .page-heading h1 { font-size: 39px; }
+  .page-heading p { font-size: 17px; }
+  .page-heading { margin-bottom: 30px; }
+  .signal-kicker { font-size: 12px; }
+  .signal-intro h1 { font-size: 56px; }
+  .signal-intro > p { font-size: 18px; }
+  .signal-actions { flex-direction: column; align-items: flex-start; gap: 23px; margin-top: 28px; }
+  .signal-secondary { font-size: 17px; }
+  .signal-hero { margin-bottom: 36px; }
+  .signal-network { margin-inline: 0; }
+  .network-heading { padding: 0 16px; height: auto; min-height: 64px; flex-wrap: wrap; gap: 4px 14px; padding-block: 13px; }
+  .network-heading > span:first-child { font-size: 17px; }
+  .network-heading .mono { font-size: 11px; }
+  .signal-globe { width: 125%; max-width: none; margin-left: -12.5%; max-height: none; }
+  .node-label { font-size: 26px; }
+  .path-label { font-size: 20px; }
+  .globe-note { font-size: 12px; }
+  .node-hit { r: 41px; }
+  .node-inspector { padding: 22px 17px; }
+  .inspector-content { grid-template-columns: 75px minmax(0, 1fr); gap: 10px 16px; }
+  .node-inspector .inspector-label { grid-column: 1 / -1; font-size: 12px; margin-bottom: 4px; }
+  .node-inspector .inspector-id { grid-column: 1; grid-row: 2 / 4; font-size: 37px; }
+  .node-inspector h3 { grid-column: 2; grid-row: 2; font-size: 22px; }
+  .node-inspector .node-role { grid-column: 2; grid-row: 3; font-size: 13px; margin: 0; }
+  .node-inspector p { grid-column: 1 / -1; grid-row: 4; font-size: 16px; margin-top: 10px; }
+  .node-connections { grid-column: 1 / -1; padding-top: 16px; margin-top: 6px; gap: 8px; }
+  .node-connections > span { width: 100%; font-size: 13px; }
+  .node-connections button { font-size: 13px; gap: 8px; padding: 8px 11px; }
+  .network-controls { display: grid; grid-template-columns: 1fr 1fr; padding: 18px 16px; gap: 13px; }
+  .network-controls .btn { font-size: 13px; padding: 9px 11px; min-height: 45px; }
+  .layer-toggle { font-size: 13px; justify-self: end; }
+  .orbit-control { margin: 0; font-size: 13px; }
+  .orbit-control input { width: 64px; }
+  .network-disclaimer { display: block; padding: 16px; font-size: 12px; }
+  .network-disclaimer > span { font-size: 13px; }
+  .network-disclaimer p { margin-top: 10px; text-align: left; }
+  .overview-stat, .overview-stat:first-child { padding: 22px 14px; }
+  .overview-stat:nth-child(odd) { padding-left: 0; }
+  .stat-label { font-size: 14px; }
+  .stat-number { font-size: 38px; margin-top: 10px; }
+  .overview-workspace { margin-bottom: 40px; }
+  .inference-strip { padding-bottom: 35px; margin-bottom: 40px; }
+  .inference-title h2, .section-header h2 { font-size: 29px; }
+  .inference-title > span { font-size: 14px; }
+  .inference-strip ol { grid-template-columns: 1fr; gap: 25px; }
+  .inference-strip strong { font-size: 18px; }
+  .inference-strip small { font-size: 14px; }
+  .pipeline-icon { width: 48px; height: 48px; }
+  .overview-chart { height: 350px; }
+  .chart-legend { font-size: 15px; gap: 20px; }
+  .chart-caption { font-size: 14px; }
+  .section-header { flex-wrap: wrap; gap: 12px; }
+  .data-table, .evaluation-analysis .data-table { font-size: 16px; }
+  .data-table th, .evaluation-analysis .data-table th { font-size: 14px; }
+  .data-table td { padding-block: 18px; }
+  .panel, .explorer-layout > .panel { padding: 24px 18px; }
+  .dataset-tab { font-size: 15px; padding: 12px 16px; }
+  .dataset-picker { margin-bottom: 28px; }
+  .input, .select { font-size: 16px; padding: 12px; }
+  .input-label { font-size: 15px; }
+  .input-label span { font-size: 12px; }
+  .form-grid { gap: 20px 14px; }
+  .feature-scroll { max-height: 520px; }
+  .input-help, .muted.small, .small, .quiet-tag { font-size: 14px; }
+  .feature-group-heading { font-size: 20px; }
+  .feature-group-heading span { font-size: 13px; }
+  .btn { font-size: 16px; }
+  .btn-sm { font-size: 14px; }
+  .mode-tabs button { font-size: 16px; }
+  .result-empty { padding: 28px; }
+  .result-empty h3 { font-size: 29px; }
+  .result-class { font-size: 40px; }
+  .metric-strip > div, .metric-strip > div:first-child { padding: 21px 15px; }
+  .metric-strip strong { font-size: 32px; }
+  .metric-strip small { font-size: 14px; }
+  .explorer-layout { grid-template-columns: 1fr; }
+  .explorer-list { position: static; }
+  .explorer-item { font-size: 16px; padding: 18px 14px; }
+  .explorer-item small { font-size: 12px; }
+  .explorer-facts strong { font-size: 34px; }
+  .explorer-facts small { font-size: 14px; }
+  .about-intro h2 { font-size: 39px; }
+  .about-intro p, .about-section p, .about-columns ul { font-size: 17px; }
+  .about-section h3 { font-size: 28px; }
+  .app-footer { flex-wrap: wrap; gap: 20px; font-size: 12px; padding-block: 25px; }
+  .app-footer > span:first-child { max-width: none; width: 100%; }
+  .app-footer .cultural-signature { font-size: 18px; width: auto; max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn:active { transform: none; }
+  .signal-secondary:hover svg, .text-link:hover svg { transform: none; }
+}
+/* Keep technical values as readable as their surrounding table contents. */
+.data-table .mono { font-size: 16px; }
+.data-table .availability { font-size: 16px; }
+.feature-table .data-table td { font-size: 16px; padding-block: 17px; }
+.score-row .mono { font-size: 15px; }
+.hero-line { white-space: nowrap; }
+@media (min-width: 1201px) and (max-width: 1600px) {
+  .signal-hero { grid-template-columns: minmax(365px, .8fr) minmax(0, 1.8fr); }
+}
+@media (max-width: 600px) {
+  .data-table .mono, .data-table .availability { font-size: 15px; }
+  .feature-table .data-table td { font-size: 15px; }
+}
+@media (max-width: 600px) { .signal-intro h1 { font-size: clamp(44px, 14vw, 56px); } }
+@media (max-width: 360px) { .toolbar-page { display: none; } }

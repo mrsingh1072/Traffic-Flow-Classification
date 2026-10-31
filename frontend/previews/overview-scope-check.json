@@ -1,0 +1,58 @@
+[
+  {
+    "Path": "frontend/src/App.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/main.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/pages/ClassifierPage.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/pages/EvaluationPage.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/pages/ExplorerPage.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/pages/AboutPage.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/components/layout/TopBar.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/components/layout/Sidebar.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/components/visualizations/InferencePipeline.tsx",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/services/api.ts",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/index.css",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/workspace.css",
+    "Unchanged": true
+  },
+  {
+    "Path": "frontend/src/refinement.css",
+    "Unchanged": true
+  },
+  {
+    "Path": "backend/main.py",
+    "Unchanged": true
+  }
+]

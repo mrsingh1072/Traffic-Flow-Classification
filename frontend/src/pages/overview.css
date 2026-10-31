@@ -1,0 +1,164 @@
+/* Overview-only polish; other workspaces keep their approved styles. */
+.overview-page,
+.overview-page :is(h1, h2, h3, h4, .stat-number, .inspector-id) {
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+.overview-page .signal-hero { gap: 42px; margin-bottom: 48px; }
+.overview-page .signal-intro { padding-top: 52px; }
+.overview-page .signal-intro h1 { font-size: clamp(60px, 4.5vw, 80px); line-height: 1.08; letter-spacing: -.06em; }
+.overview-page .signal-intro > p { max-width: 405px; margin-top: 28px; line-height: 1.85; }
+.overview-page .signal-actions { gap: 24px; margin-top: 32px; }
+.overview-page .signal-actions .btn { padding: 14px 22px; }
+.overview-page .signal-network { border-color: #303030; }
+.overview-page .network-heading { border-bottom-color: #252525; }
+.overview-page .signal-globe { cursor: grab; touch-action: pan-y; user-select: none; }
+.overview-page .signal-globe:active { cursor: grabbing; }
+.overview-page .signal-globe:focus-visible { outline-offset: -5px; }
+.overview-page .globe-node { cursor: pointer; }
+.overview-page .network-edge { transition: stroke-width .18s; }
+.overview-page .path-label { font-size: 14px; stroke-width: 4px; }
+.overview-page .node-label { font-size: 19px; }
+.overview-page .node-inspector { padding: 25px; min-height: 290px; }
+.overview-page .node-picker { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+.overview-page .node-picker button { min-width: 46px; min-height: 40px; padding: 7px 12px; border: 1px solid #303030; background: #111111; color: #9f9d9a; font: 13px var(--font-mono); transition: color .18s, border-color .18s, background .18s; }
+.overview-page .node-picker button:hover { color: var(--text); border-color: #62584e; }
+.overview-page .node-picker button[aria-pressed="true"] { color: #e18a70; background: #211a17; border-color: #825242; }
+.overview-page .inspector-content { grid-template-columns: 72px minmax(170px, .85fr) minmax(0, 1.2fr); gap: 9px 22px; }
+.overview-page .node-inspector h3 { font-size: 22px; line-height: 1.4; }
+.overview-page .node-inspector p { font-size: 15px; line-height: 1.85; }
+.overview-page .node-role { font-size: 13px; }
+.overview-page .node-plane { display: block; margin-top: 8px; color: #c6bcb0; font-size: 12px; }
+.overview-page .node-connections { margin-top: 12px; padding-top: 18px; }
+.overview-page .network-controls { padding: 18px 24px; gap: 20px; }
+.overview-page .motion-preference { display: flex; align-items: center; gap: 8px; margin-left: auto; font-size: 12px; color: var(--muted); cursor: pointer; }
+.overview-page .motion-preference input { width: 16px; height: 16px; accent-color: var(--accent); }
+.overview-page .network-disclaimer { font-size: 12px; padding: 17px 24px; }
+.overview-page .network-disclaimer p { max-width: 470px; }
+.overview-page .overview-workspace { margin-bottom: 50px; }
+.overview-page .overview-stat { padding-block: 28px; }
+.overview-page .stat-number { font-size: 44px; font-variant-numeric: tabular-nums; letter-spacing: -.045em; margin-top: 12px; }
+.overview-page .stat-label { font-size: 15px; }
+.overview-page .overview-pipeline { margin-bottom: 50px; }
+.overview-page .inference-strip { padding-bottom: 35px; margin-bottom: 0; }
+.overview-page .inference-strip li { padding-block: 5px; }
+.overview-page .inference-strip .stage-arrow { display: block; transition: transform .25s, color .25s; }
+.overview-page .inference-strip li:hover .stage-arrow { transform: translateX(5px); color: #d16a52; }
+.overview-page .inference-strip li:hover .pipeline-icon { border-color: #665046; color: #e2e2e0; }
+.overview-page .pipeline-icon { transition: color .2s, border-color .2s; }
+@media (max-width: 1600px) {
+  .overview-page .signal-hero { gap: 32px; }
+}
+@media (max-width: 1200px) {
+  .overview-page .signal-intro { padding-top: 0; }
+  .overview-page .signal-intro h1 { font-size: 72px; }
+  .overview-page .signal-intro > p { max-width: 680px; }
+  .overview-page .inspector-content { grid-template-columns: 75px minmax(180px, .8fr) minmax(0, 1.2fr); }
+  .overview-page .inference-strip li:nth-child(2) .stage-arrow { visibility: hidden; }
+}
+@media (max-width: 700px) {
+  .overview-page .node-inspector { padding: 22px 17px; }
+  .overview-page .inspector-content { grid-template-columns: 66px minmax(0, 1fr); gap: 9px 17px; }
+  .overview-page .node-inspector .inspector-label { grid-column: 1 / -1; }
+  .overview-page .node-inspector .inspector-id { grid-column: 1; grid-row: 2 / 4; font-size: 34px; }
+  .overview-page .node-inspector h3 { grid-column: 2; grid-row: 2; font-size: 21px; }
+  .overview-page .node-role { grid-column: 2; grid-row: 3; }
+  .overview-page .node-inspector p { grid-column: 1 / -1; grid-row: 4; font-size: 16px; margin-top: 12px; }
+  .overview-page .node-picker { margin-bottom: 22px; }
+  .overview-page .node-picker button { padding-inline: 10px; min-width: 39px; min-height: 40px; }
+  .overview-page .network-controls { display: flex; flex-wrap: wrap; padding: 17px; gap: 12px 18px; }
+  .overview-page .network-controls .btn { font-size: 13px; }
+  .overview-page .layer-toggle { margin-left: auto; font-size: 13px; }
+  .overview-page .motion-preference { margin: 0; width: 100%; padding-top: 4px; }
+  .overview-page .network-disclaimer { padding: 16px 17px; }
+}
+@media (max-width: 600px) {
+  .overview-page .signal-hero { gap: 34px; margin-bottom: 36px; }
+  .overview-page .signal-intro h1 { font-size: clamp(44px, 14vw, 56px); }
+  .overview-page .signal-intro > p { margin-top: 24px; font-size: 17px; }
+  .overview-page .signal-globe { width: 112%; margin-left: -6%; }
+  .overview-page .node-label { font-size: 24px; }
+  .overview-page .path-label { font-size: 17px; }
+  .overview-page .globe-note { font-size: 11px; }
+  .overview-page .stat-number { font-size: 36px; }
+  .overview-page .stat-label { font-size: 14px; }
+  .overview-page .overview-workspace { margin-bottom: 37px; }
+  .overview-page .overview-stat { padding-block: 22px; }
+  .overview-page .overview-pipeline { margin-bottom: 40px; }
+  .overview-page .inference-strip li:nth-child(2) .stage-arrow { visibility: visible; }
+  .overview-page .inference-strip li:hover .stage-arrow { transform: rotate(90deg) translateX(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .overview-page .inference-strip li:hover .stage-arrow { transform: none; }
+}
+
+/* Focused Overview finish: a single visual story, followed by workspace facts. */
+.overview-topbar .toolbar-signature {
+  font-family: "Noto Sans Devanagari", "Nirmala UI", sans-serif;
+  color: #d0c7bb;
+  font-size: 16px;
+  line-height: 1.6;
+  padding-top: 3px;
+}
+.overview-page .signal-intro h1 em { color: #d0c7bb; }
+.overview-page .signal-actions .btn-primary { border-radius: 5px; box-shadow: none; }
+.overview-page .signal-actions .btn-primary:hover { box-shadow: none; }
+.overview-page .overview-stats { grid-template-columns: repeat(3,minmax(0,1fr)); border: 0; gap: 18px; }
+.overview-page .overview-stat, .overview-page .overview-stat:first-child {
+  padding: 28px 30px; background: #0e0e0e; border: 1px solid #292929; border-radius: 6px;
+}
+.overview-page .stat-label { color: #c6c1b9; }
+.overview-page .stat-number { color: #e7e3dc; font-size: clamp(38px,3.2vw,52px); line-height: 1.25; margin-block: 17px 14px; }
+.overview-page .stat-number.stat-unavailable { font-size: 26px; }
+.overview-stat-note { font-size: 13px; color: #97928c; line-height: 1.6; }
+.overview-page .overview-workspace { margin-bottom: 48px; }
+.overview-page .overview-pipeline { margin-bottom: 0; }
+.overview-page .inference-strip { padding-bottom: 0; border-bottom: 0; }
+@media (max-width:700px) {
+  .overview-page .overview-stats { grid-template-columns: 1fr; gap: 12px; }
+  .overview-page .overview-stat, .overview-page .overview-stat:first-child { padding: 24px; }
+  .overview-page .stat-number { font-size: 40px; margin-block: 12px 8px; }
+  .overview-topbar .toolbar-signature { font-size: 16px; display: block; }
+}
+
+/* Compact final Overview composition. */
+.overview-page .signal-hero { gap: 32px; margin-bottom: 32px; }
+.overview-page .signal-intro { padding-top: 32px; }
+.overview-page .signal-intro h1 { font-size: clamp(56px,4.2vw,74px); }
+.overview-page .signal-intro > p { margin-top: 24px; line-height: 1.75; }
+.overview-page .signal-kicker { margin-bottom: 24px; }
+.overview-page .signal-globe { max-height: 600px; }
+.overview-page .network-heading { min-height: 54px; height: 54px; }
+.overview-page .network-heading .reset-network { margin-left: auto; display: inline-flex; color: var(--muted); }
+.overview-page .node-inspector { min-height: 0; padding-block: 20px; }
+.overview-page .node-picker { margin-bottom: 16px; }
+.overview-page .node-connections { padding-top: 12px; margin-top: 6px; }
+.overview-page .network-controls { padding-block: 14px; }
+.overview-page .overview-workspace { margin-bottom: 32px; }
+.overview-page .overview-stat, .overview-page .overview-stat:first-child { padding-block: 24px; }
+@media (max-width:1200px) {
+  .overview-page .signal-intro { padding-top: 0; }
+  .overview-page .signal-globe { max-height: 580px; }
+}
+@media (max-width:600px) {
+  .overview-page .signal-intro h1 { font-size: clamp(42px,13vw,54px); }
+  .overview-page .signal-hero { gap: 26px; }
+  .overview-page .signal-globe { max-height: none; }
+  .overview-page .network-heading { padding-block: 8px; height: auto; }
+}
+
+/* Overview cleanup: retain the globe layout and tighten surrounding sections. */
+.overview-page .signal-hero { margin-bottom: 24px; }
+.overview-page .overview-workspace { margin-bottom: 24px; }
+.overview-page .inference-strip { padding-top: 0; }
+.overview-page .inference-title { margin-bottom: 24px; }
+@media (min-width:1201px) {
+  .overview-page .signal-intro { position: sticky; top: 32px; align-self: start; }
+}
+@media (min-width:1024px) {
+  .overview-page .inference-strip ol { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 20px; }
+  .overview-page .inference-strip li { min-width: 0; gap: 12px; }
+  .overview-page .pipeline-icon { width: 42px; height: 42px; flex-shrink: 0; }
+  .overview-page .inference-strip strong { font-size: 16px; }
+  .overview-page .inference-strip small { font-size: 13px; }
+  .overview-page .inference-strip .stage-arrow { display: block; visibility: visible; flex-shrink: 0; }
+}

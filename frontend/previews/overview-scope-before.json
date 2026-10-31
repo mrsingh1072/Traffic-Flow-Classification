@@ -1,0 +1,58 @@
+[
+  {
+    "Path": "frontend/src/App.tsx",
+    "Hash": "EE99FE4A247BD106D8C11D1345C374103EA806615C1C9619DD9266EC19FC0C51"
+  },
+  {
+    "Path": "frontend/src/main.tsx",
+    "Hash": "238C0DED9942CF2917FB14F6F0A2D7C9A64C79594AB7C46C067BE0F31B104527"
+  },
+  {
+    "Path": "frontend/src/pages/ClassifierPage.tsx",
+    "Hash": "F7D523E9DF454ED751BFCAD214DF1B503E5E28557D44697DD922F78D219448AC"
+  },
+  {
+    "Path": "frontend/src/pages/EvaluationPage.tsx",
+    "Hash": "E1AD2E509B4DE8A440AFDB7CD4CCEFFFB14FA70330037DA26951829421379251"
+  },
+  {
+    "Path": "frontend/src/pages/ExplorerPage.tsx",
+    "Hash": "9B1E91C499C7BCAD79232C95001509B63A28AA267A28B952D2AF8A7F6E3FC4AB"
+  },
+  {
+    "Path": "frontend/src/pages/AboutPage.tsx",
+    "Hash": "CB2F0035EEB582F54718BF0D15810E6336552CFECE13F8EFC949417A81062758"
+  },
+  {
+    "Path": "frontend/src/components/layout/TopBar.tsx",
+    "Hash": "AD3834EB12D9BE595E7B9E8853080171DEEFE256E70CCB892EF384D146055245"
+  },
+  {
+    "Path": "frontend/src/components/layout/Sidebar.tsx",
+    "Hash": "116E129B756EACCBEC73936162F7574A6C4C16756FC562E0B72FF9C15539A7A3"
+  },
+  {
+    "Path": "frontend/src/components/visualizations/InferencePipeline.tsx",
+    "Hash": "61A9033685EADDB8D0FA54912AA28C60E6EE028CF0F0AE55D83035ABC2B9B1A8"
+  },
+  {
+    "Path": "frontend/src/services/api.ts",
+    "Hash": "828C74C023245BF91ED817CFEDC05B63CA704CB63BDBB22E55EE43257718480D"
+  },
+  {
+    "Path": "frontend/src/index.css",
+    "Hash": "F144D79CEAAD46B3EBABA3AD436A206A6617021275936FA538E8DA674CF2B44E"
+  },
+  {
+    "Path": "frontend/src/workspace.css",
+    "Hash": "41370E2822E5719D3846BAAD42980044ECF4AD968C50B5E7D8AB22971F54BD6D"
+  },
+  {
+    "Path": "frontend/src/refinement.css",
+    "Hash": "7072A6EDD54B8E7A1709D19756FC1344057516C159A174A53C8B64EA73CF6FC6"
+  },
+  {
+    "Path": "backend/main.py",
+    "Hash": "F74079FC35618B6E2DB5D7BD7F27075933A50BD7DEFECDC7FFA0E3F026A50D43"
+  }
+]

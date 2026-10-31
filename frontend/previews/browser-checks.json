@@ -1,0 +1,259 @@
+{
+  "testedOn": "2026-10-30",
+  "pass": "Black Signal refinement",
+  "desktopRoutes": [
+    {
+      "page": "overview",
+      "url": "http://127.0.0.1:5173/#/overview",
+      "active": "page",
+      "reload": true
+    },
+    {
+      "page": "classifier",
+      "url": "http://127.0.0.1:5173/#/classifier",
+      "active": "page",
+      "reload": true
+    },
+    {
+      "page": "evaluation",
+      "url": "http://127.0.0.1:5173/#/evaluation",
+      "active": "page",
+      "reload": true
+    },
+    {
+      "page": "datasets",
+      "url": "http://127.0.0.1:5173/#/datasets",
+      "active": "page",
+      "reload": true
+    },
+    {
+      "page": "about",
+      "url": "http://127.0.0.1:5173/#/about",
+      "active": "page",
+      "reload": true
+    }
+  ],
+  "mobileRoutes": [
+    {
+      "client": 384,
+      "route": "#/classifier",
+      "scroll": 384,
+      "signature": {
+        "font": "\"Noto Sans Devanagari\", \"Nirmala UI\", sans-serif",
+        "inFooter": true,
+        "right": 366,
+        "text": "वसुधैव कुटुम्बकम्"
+      },
+      "width": 390
+    },
+    {
+      "client": 384,
+      "route": "#/evaluation",
+      "scroll": 384,
+      "signature": {
+        "font": "\"Noto Sans Devanagari\", \"Nirmala UI\", sans-serif",
+        "inFooter": true,
+        "right": 366,
+        "text": "वसुधैव कुटुम्बकम्"
+      },
+      "width": 390
+    },
+    {
+      "client": 384,
+      "route": "#/datasets",
+      "scroll": 384,
+      "signature": {
+        "font": "\"Noto Sans Devanagari\", \"Nirmala UI\", sans-serif",
+        "inFooter": true,
+        "right": 366,
+        "text": "वसुधैव कुटुम्बकम्"
+      },
+      "width": 390
+    },
+    {
+      "client": 384,
+      "route": "#/about",
+      "scroll": 384,
+      "signature": {
+        "font": "\"Noto Sans Devanagari\", \"Nirmala UI\", sans-serif",
+        "inFooter": true,
+        "right": 366,
+        "text": "वसुधैव कुटुम्बकम्"
+      },
+      "width": 390
+    },
+    {
+      "client": 384,
+      "route": "#/overview",
+      "scroll": 384,
+      "signature": {
+        "font": "\"Noto Sans Devanagari\", \"Nirmala UI\", sans-serif",
+        "inFooter": true,
+        "right": 366,
+        "text": "वसुधैव कुटुम्बकम्"
+      },
+      "width": 390
+    }
+  ],
+  "viewports": [
+    {
+      "client": 1914,
+      "globeHeight": 740,
+      "heading": "88px",
+      "scroll": 1914,
+      "tableValue": "16px",
+      "width": 1920
+    },
+    {
+      "client": 1434,
+      "globeHeight": 706,
+      "heading": "66px",
+      "scroll": 1434,
+      "tableValue": "16px",
+      "width": 1440
+    },
+    {
+      "client": 1360,
+      "globeHeight": 669,
+      "heading": "66px",
+      "scroll": 1360,
+      "tableValue": "16px",
+      "width": 1366
+    },
+    {
+      "client": 762,
+      "globeHeight": 565,
+      "heading": "76px",
+      "scroll": 762,
+      "tableValue": "16px",
+      "width": 768
+    },
+    {
+      "client": 384,
+      "globeHeight": 344,
+      "heading": "54.656px",
+      "scroll": 384,
+      "tableValue": "15px",
+      "width": 390
+    },
+    {
+      "client": 354,
+      "globeHeight": 314,
+      "heading": "50.4px",
+      "scroll": 354,
+      "tableValue": "15px",
+      "width": 360
+    },
+    {
+      "client": 314,
+      "globeHeight": 274,
+      "heading": "44.8px",
+      "scroll": 314,
+      "tableValue": "15px",
+      "width": 320
+    }
+  ],
+  "finalViewportMeasurements": [
+    {
+      "client": 1434,
+      "scroll": 1434,
+      "width": 1440
+    },
+    {
+      "client": 1360,
+      "scroll": 1360,
+      "width": 1366
+    },
+    {
+      "client": 384,
+      "scroll": 384,
+      "width": 390
+    }
+  ],
+  "nodePanels": [
+    {
+      "node": "UE",
+      "info": "A handset or other endpoint supplies traffic through the radio access network. No devices are discovered by this application."
+    },
+    {
+      "node": "gNB",
+      "info": "The 5G radio base station connects user equipment to the core. N3 carries user-plane traffic to the UPF; N2 connects to the AMF."
+    },
+    {
+      "node": "AMF",
+      "info": "The AMF manages access and mobility. It terminates N2 signaling from the gNodeB and coordinates session management with the SMF over N11."
+    },
+    {
+      "node": "SMF",
+      "info": "The SMF manages sessions and selects and controls the UPF. N4 carries control signaling; user traffic does not pass through the SMF."
+    },
+    {
+      "node": "UPF",
+      "info": "The UPF forwards user-plane traffic between the radio access network and the data network. The SMF controls forwarding through N4."
+    },
+    {
+      "node": "DN",
+      "info": "The destination network is reached through the UPF over N6. This logical destination has no geographic or operational meaning."
+    },
+    {
+      "node": "UDM",
+      "info": "The UDM manages subscriber information. The simplified view shows N8 interactions with the AMF and N10 interactions with the SMF, separate from the user plane."
+    }
+  ],
+  "networkControls": {
+    "selection": true,
+    "layerVisibility": true,
+    "orbit": true,
+    "reset": true,
+    "packetOffsetObserved": "11.7778%"
+  },
+  "predictions": [
+    {
+      "dataset": "UNSW-NB15",
+      "result": "Normal"
+    },
+    {
+      "dataset": "ISCX 15s",
+      "result": "VPN-BROWSING"
+    },
+    {
+      "dataset": "ISCX 30s",
+      "result": "VPN-BROWSING"
+    },
+    {
+      "dataset": "ISCX 60s",
+      "result": "BROWSING"
+    },
+    {
+      "dataset": "ISCX 120s",
+      "result": "BROWSING"
+    }
+  ],
+  "batch": {
+    "invalidEmptyArrayRejected": true,
+    "twoRecordsPredicted": true,
+    "resultSelection": true,
+    "jsonExport": true
+  },
+  "evaluation": {
+    "datasetSwitching": true,
+    "unswAccuracy": "71.96%",
+    "iscx120Accuracy": "57.48%",
+    "mobilePageOverflow": false
+  },
+  "history": {
+    "back": true,
+    "forward": true
+  },
+  "signature": {
+    "placement": "Footer bottom-right",
+    "text": "वसुधैव कुटुम्बकम्",
+    "font": "Noto Sans Devanagari"
+  },
+  "console": [],
+  "automatedChecks": {
+    "routeTests": 5,
+    "apiAssertions": 71,
+    "productionBuild": "passed"
+  }
+}

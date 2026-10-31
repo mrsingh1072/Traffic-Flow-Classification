@@ -1,0 +1,257 @@
+{
+  "testedOn": "2026-10-31",
+  "scope": "Overview only",
+  "naturalRotation": {
+    "start": {
+      "angle": 2.402,
+      "time": 1793385719319
+    },
+    "end": {
+      "angle": 187.43,
+      "time": 1793385732179
+    },
+    "degreesPerSecond": 14.38786936236392
+  },
+  "pause": {
+    "before": "5.357",
+    "after": "5.357"
+  },
+  "speedControl": {
+    "defaultSeconds": 25,
+    "fastSeconds": 20
+  },
+  "manualPointerOrbit": {
+    "before": 161.416,
+    "after": 203.416
+  },
+  "temporaryHold": {
+    "angle": "199.013",
+    "state": "interacting"
+  },
+  "automaticResume": {
+    "angle": "11.202",
+    "state": "rotating"
+  },
+  "offscreen": {
+    "before": {
+      "angle": "12.401",
+      "frame": "3510",
+      "state": "offscreen"
+    },
+    "after": {
+      "angle": "12.401",
+      "frame": "3510",
+      "state": "offscreen"
+    }
+  },
+  "reducedMotion": {
+    "before": {
+      "angle": "13.902",
+      "frame": "3518",
+      "state": "reduced"
+    },
+    "after": {
+      "angle": "13.902",
+      "packets": 0,
+      "state": "reduced"
+    }
+  },
+  "connectionEndpoints": [
+    {
+      "error": 0,
+      "from": "UE",
+      "to": "gNB"
+    },
+    {
+      "error": 0,
+      "from": "gNB",
+      "to": "UPF"
+    },
+    {
+      "error": 0,
+      "from": "UPF",
+      "to": "DN"
+    },
+    {
+      "error": 0,
+      "from": "gNB",
+      "to": "AMF"
+    },
+    {
+      "error": 0,
+      "from": "AMF",
+      "to": "SMF"
+    },
+    {
+      "error": 0,
+      "from": "SMF",
+      "to": "UPF"
+    },
+    {
+      "error": 0,
+      "from": "SMF",
+      "to": "UDM"
+    },
+    {
+      "error": 0,
+      "from": "AMF",
+      "to": "UDM"
+    }
+  ],
+  "inspectors": [
+    {
+      "node": "UE",
+      "fullForm": "User Equipment",
+      "plane": "User plane + access signaling",
+      "interfaces": "Relevant interfaces\nRadio\ngNB"
+    },
+    {
+      "node": "gNB",
+      "fullForm": "Next-generation Node B",
+      "plane": "User plane + control signaling",
+      "interfaces": "Relevant interfaces\nRadio\nUE\nN3\nUPF\nN2\nAMF"
+    },
+    {
+      "node": "AMF",
+      "fullForm": "Access and Mobility Management Function",
+      "plane": "Control plane",
+      "interfaces": "Relevant interfaces\nN2\ngNB\nN11\nSMF\nN8\nUDM"
+    },
+    {
+      "node": "SMF",
+      "fullForm": "Session Management Function",
+      "plane": "Control plane",
+      "interfaces": "Relevant interfaces\nN11\nAMF\nN4\nUPF\nN10\nUDM"
+    },
+    {
+      "node": "UDM",
+      "fullForm": "Unified Data Management",
+      "plane": "Control plane",
+      "interfaces": "Relevant interfaces\nN10\nSMF\nN8\nAMF"
+    },
+    {
+      "node": "UPF",
+      "fullForm": "User Plane Function",
+      "plane": "User plane",
+      "interfaces": "Relevant interfaces\nN3\ngNB\nN6\nDN\nN4\nSMF"
+    },
+    {
+      "node": "DN",
+      "fullForm": "Data Network",
+      "plane": "User-plane destination",
+      "interfaces": "Relevant interfaces\nN6\nUPF"
+    }
+  ],
+  "responsive": [
+    {
+      "client": 1914,
+      "scroll": 1914,
+      "signature": "वसुधैव कुटुम्बकम्",
+      "width": 1920
+    },
+    {
+      "client": 1434,
+      "scroll": 1434,
+      "signature": "वसुधैव कुटुम्बकम्",
+      "width": 1440
+    },
+    {
+      "client": 1360,
+      "scroll": 1360,
+      "signature": "वसुधैव कुटुम्बकम्",
+      "width": 1366
+    },
+    {
+      "client": 762,
+      "scroll": 762,
+      "signature": "वसुधैव कुटुम्बकम्",
+      "width": 768
+    },
+    {
+      "client": 384,
+      "scroll": 384,
+      "signature": "वसुधैव कुटुम्बकम्",
+      "width": 390
+    },
+    {
+      "client": 354,
+      "scroll": 354,
+      "signature": "वसुधैव कुटुम्बकम्",
+      "width": 360
+    },
+    {
+      "client": 314,
+      "scroll": 314,
+      "signature": "वसुधैव कुटुम्बकम्",
+      "width": 320
+    }
+  ],
+  "protectedFiles": [
+    {
+      "Path": "frontend/src/App.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/main.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/pages/ClassifierPage.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/pages/EvaluationPage.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/pages/ExplorerPage.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/pages/AboutPage.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/components/layout/TopBar.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/components/layout/Sidebar.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/components/visualizations/InferencePipeline.tsx",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/services/api.ts",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/index.css",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/workspace.css",
+      "Unchanged": true
+    },
+    {
+      "Path": "frontend/src/refinement.css",
+      "Unchanged": true
+    },
+    {
+      "Path": "backend/main.py",
+      "Unchanged": true
+    }
+  ],
+  "compiledRotation": {
+    "from": "3.118",
+    "to": "6.005"
+  },
+  "console": [],
+  "tests": {
+    "geometryAndMotion": 6,
+    "routes": 5,
+    "build": "passed"
+  }
+}

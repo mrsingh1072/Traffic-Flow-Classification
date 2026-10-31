@@ -3,7 +3,7 @@ import { MotionConfig, motion, useReducedMotion } from "motion/react";
 import { Sidebar } from "./components/layout/Sidebar";
 import { TopBar } from "./components/layout/TopBar";
 import { OverviewPage } from "./pages/OverviewPage";
-import { useHealth } from "./hooks/useHealth";
+import { CreatorSignature } from "./components/layout/CreatorSignature";
 import type { Page } from "./types";
 import { pageFromHash, PAGE_PATHS } from "./routes";
 const ClassifierPage = lazy(() =>
@@ -24,7 +24,6 @@ export default function App() {
   const reduced = useReducedMotion();
   const [activePage, setActivePage] = useState<Page>(currentPage);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { health, loading, error } = useHealth();
   useEffect(() => {
     const update = () => {
       const page = currentPage();
@@ -54,9 +53,6 @@ export default function App() {
       <div className="app-shell">
         <TopBar
           activePage={activePage}
-          health={health}
-          healthLoading={loading}
-          healthError={error}
           onMobileMenu={() => setMobileOpen(true)}
         />
         <Sidebar
@@ -84,14 +80,12 @@ export default function App() {
               </motion.div>
             </Suspense>
           </main>
-          <footer className="app-footer">
+          <footer className={`app-footer${activePage === "about" ? " about-footer" : ""}`}>
             <span>
               TrafficFlow <span className="footer-divider">/</span> CNN-based
               traffic classification
             </span>
-            {activePage !== "classifier" && activePage !== "overview" && (
-              <span lang="sa" className="cultural-signature" title="The world is one family">वसुधैव कुटुम्बकम्</span>
-            )}
+            {activePage === "about" && <CreatorSignature />}
           </footer>
         </div>
       </div>

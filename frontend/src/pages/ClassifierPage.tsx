@@ -18,7 +18,10 @@ import {
 import { DATASET_LABELS, type DatasetKey } from "../types";
 import { DatasetPicker } from "../components/DatasetPicker";
 import { ErrorState, LoadingState, PageHeading } from "../components/ui";
+import exampleData from "../data/classifier-examples.json";
+import "./classifier.css";
 type RecordInput = Record<string, string | number | null>;
+const examples: Record<DatasetKey, { source: string; examples: { label: string; testIndex: number; features: RecordInput }[] }> = exampleData;
 function download(name: string, data: unknown) {
   const url = URL.createObjectURL(
     new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }),
@@ -43,6 +46,8 @@ export function ClassifierPage() {
   const [busy, setBusy] = useState(false);
   const [results, setResults] = useState<PredictResponse[]>([]);
   const [selected, setSelected] = useState(0);
+  const [exampleIndex, setExampleIndex] = useState(0);
+  const [sampleLabels, setSampleLabels] = useState<string[]>([]);
   const request = useRef(0);
   useEffect(() => {
     const id = ++request.current;
@@ -54,6 +59,8 @@ export function ClassifierPage() {
     setResults([]);
     setError("");
     setFieldErrors({});
+    setExampleIndex(0);
+    setSampleLabels([]);
     fetchSchema(dataset)
       .then((s) => {
         if (id === request.current) setSchema(s);
@@ -74,6 +81,30 @@ export function ClassifierPage() {
     setError("");
     setFieldErrors({});
     setJson("");
+    setSampleLabels([]);
+  };
+  const samples = examples[dataset].examples;
+  const examplesMatchSchema = !!schema && samples.every(({ features }) =>
+    Object.keys(features).length === Object.keys(schema.features).length &&
+    Object.entries(schema.features).every(([key, kind]) => key in features &&
+      (features[key] === null || (kind === "numeric" ? typeof features[key] === "number" : typeof features[key] === "string"))),
+  );
+  const loadExample = () => {
+    if (!examplesMatchSchema) {
+      setError("The demo examples do not match the current dataset schema. Use your own matching feature records.");
+      return;
+    }
+    if (mode === "single") {
+      const sample = samples[exampleIndex] ?? samples[0];
+      setValues(Object.fromEntries(Object.entries(sample.features).map(([key, value]) => [key, value === null ? "" : String(value)])));
+      setSampleLabels([sample.label]);
+    } else {
+      setJson(JSON.stringify(samples.map(sample => sample.features), null, 2));
+      setSampleLabels(samples.map(sample => sample.label));
+    }
+    setResults([]);
+    setFieldErrors({});
+    setError("");
   };
   const template = () =>
     schema
@@ -139,7 +170,7 @@ export function ClassifierPage() {
           );
         if (Object.values(row).every((v) => v === null))
           throw new Error(
-            prefix + "Supply at least one non-null feature value.",
+            prefix + (mode === "single" ? "Load a demo example or enter measured feature values before classifying." : "Supply at least one non-null feature value."),
           );
         for (const [key, type] of Object.entries(schema.features)) {
           const v = row[key];
@@ -179,11 +210,11 @@ export function ClassifierPage() {
   const result = results[selected];
   const featureEntries = schema ? Object.entries(schema.features) : [];
   return (
-    <div>
+    <div className="classifier-page">
       <PageHeading
         eyebrow="INFERENCE WORKSPACE"
         title="Traffic Classifier"
-        description="Classify raw feature records with the fitted model for your selected dataset."
+        description="Choose a dataset, load an example, and run the CNN. No manual feature entry is needed for a demo."
       />
       <DatasetPicker value={dataset} onChange={setDataset} disabled={busy} />
       {loading ? (
@@ -225,6 +256,7 @@ export function ClassifierPage() {
                       setMode(m);
                       setError("");
                       setResults([]);
+                      setSampleLabels([]);
                     }}
                   >
                     {m === "single" ? (
@@ -239,9 +271,25 @@ export function ClassifierPage() {
               <form onSubmit={submit} noValidate>
                 {mode === "single" ? (
                   <>
+                    <div className="classifier-example">
+                      <div className="example-copy">
+                        <h4>Try a real dataset example</h4>
+                        <p>Real held-out traffic records. Dataset labels are shown separately from model predictions.</p>
+                      </div>
+                      <div className="example-actions">
+                        <label htmlFor="demo-example" className="input-label">Demo record</label>
+                        <select id="demo-example" className="select" value={exampleIndex} disabled={busy} onChange={e => setExampleIndex(Number(e.target.value))}>
+                          {samples.map((sample, index) => <option key={sample.label} value={index}>{sample.label}</option>)}
+                        </select>
+                        <button type="button" className="btn btn-secondary" onClick={loadExample} disabled={busy || !examplesMatchSchema}>Load example <ArrowRight size={15} /></button>
+                      </div>
+                    </div>
+                    {sampleLabels.length > 0 && <p className="example-status" role="status">Example loaded · {schema.required_feature_count} features · Dataset label: <strong>{sampleLabels[0]}</strong>.</p>}
+                    <details className="manual-features">
+                      <summary>Review or edit features <span>{schema.required_feature_count} inputs</span></summary>
                     <p className="input-help">
-                      Enter raw values. Blank fields are sent as null for the
-                      fitted imputer. At least one value is required.
+                      These are measured network-flow statistics, not an IP address or website URL.
+                      Use a complete dataset record rather than guessing values. Blank fields are imputed by the fitted preprocessing pipeline.
                     </p>
                     <div
                       className="feature-scroll"
@@ -286,6 +334,7 @@ export function ClassifierPage() {
                                 placeholder="null"
                                 onChange={(e) => {
                                   setResults([]);
+                                  setSampleLabels([]);
                                   setValues((v) => ({
                                     ...v,
                                     [name]: e.target.value,
@@ -311,10 +360,13 @@ export function ClassifierPage() {
                         ))}
                       </fieldset>
                     </div>
+                    </details>
                   </>
                 ) : (
                   <>
                     <div className="batch-toolbar">
+                      <button type="button" className="btn btn-secondary btn-sm" disabled={busy || !examplesMatchSchema} onClick={loadExample}><FileJson size={14} />Load sample batch</button>
+                      <button type="button" className="btn btn-secondary btn-sm" disabled={busy || !examplesMatchSchema} onClick={() => download(`${dataset}-sample-batch.json`, samples.map(sample => sample.features))}><Download size={14} />Download sample JSON</button>
                       <button
                         type="button"
                         className="btn btn-secondary btn-sm"
@@ -326,7 +378,7 @@ export function ClassifierPage() {
                         }
                       >
                         <Download size={13} />
-                        Download schema template
+                        Blank template (advanced)
                       </button>
                       <label className="btn btn-secondary btn-sm">
                         <Upload size={13} />
@@ -347,6 +399,7 @@ export function ClassifierPage() {
                               setJson(await file.text());
                               setError("");
                               setResults([]);
+                              setSampleLabels([]);
                             } catch {
                               setError("Could not read this file.");
                             }
@@ -355,6 +408,8 @@ export function ClassifierPage() {
                         />
                       </label>
                     </div>
+                    <p className="input-help batch-guidance">For a demo, choose Load sample batch, or download this dataset’s sample JSON and import that same file. Files from another dataset use different features.</p>
+                    {sampleLabels.length > 0 && <p className="example-status" role="status">{sampleLabels.length} held-out examples loaded. Classify batch to compare the model’s predictions with the dataset labels.</p>}
                     <label className="input-label" htmlFor="batch-json">
                       Feature records <span>1–100 records</span>
                     </label>
@@ -363,7 +418,7 @@ export function ClassifierPage() {
                       className="input json-editor mono"
                       value={json}
                       disabled={busy}
-                      onChange={(e) => setJson(e.target.value)}
+                      onChange={(e) => { setJson(e.target.value); setResults([]); setSampleLabels([]); }}
                       placeholder="Paste a JSON array of feature objects…"
                       spellCheck={false}
                     />
@@ -431,6 +486,7 @@ export function ClassifierPage() {
                   <p className="muted small">
                     {result.dataset} · Class {result.class_id}
                   </p>
+                  {sampleLabels[selected] && <div className="sample-comparison"><span>Dataset label</span><strong>{sampleLabels[selected]}</strong><p>{result.predicted_class === sampleLabels[selected] ? "Prediction matches this example’s label." : "Prediction differs from this example’s label. Models can make mistakes; review Model Evaluation for overall performance."}</p></div>}
                   <div className="confidence">
                     <span>Softmax confidence</span>
                     <strong>
@@ -490,7 +546,7 @@ export function ClassifierPage() {
                   <p>
                     {busy
                       ? "The selected CNN is processing your features."
-                      : "Submit your traffic features to inspect the predicted class and its score distribution."}
+                      : "Load a dataset example, then select Classify traffic. You can also enter measured features or import a sample batch."}
                   </p>
                   <p className="result-empty-foot">
                     Uses the selected dataset’s fitted model.

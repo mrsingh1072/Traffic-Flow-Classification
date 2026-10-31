@@ -1,0 +1,32 @@
+.classifier-page .classifier-example {
+  margin-top: 26px; padding: 22px; border-left: 2px solid var(--accent);
+  background: var(--surface-subtle);
+}
+.classifier-page .example-copy h4 { font: 600 19px/1.4 var(--font-sans); letter-spacing: -.02em; }
+.classifier-page .example-copy p { margin-top: 8px; font-size: 14px; line-height: 1.75; color: var(--muted); }
+.classifier-page .example-actions { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px 12px; margin-top: 20px; }
+.classifier-page .example-actions label { grid-column: 1/-1; }
+.classifier-page .example-actions .select { width: 100%; min-width: 0; }
+.classifier-page .example-status { margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--muted); }
+.classifier-page .example-status strong { color: var(--text); font-weight: 500; }
+.classifier-page .manual-features { margin-top: 26px; border-top: 1px solid var(--border); }
+.classifier-page .manual-features summary { display: list-item; padding: 20px 0; cursor: pointer; color: var(--text); font-size: 16px; font-weight: 500; }
+.classifier-page .manual-features summary::marker { color: var(--accent); }
+.classifier-page .manual-features summary span { margin-left: 12px; color: var(--muted); font-size: 13px; font-weight: 400; white-space: nowrap; }
+.classifier-page .manual-features .input-help { margin-top: 0; }
+.classifier-page .manual-features:not([open]) + .form-submit { margin-top: 0; }
+.classifier-page .sample-comparison { margin-top: 24px; padding-block: 18px; border-block: 1px solid var(--border); }
+.classifier-page .sample-comparison > span { color: var(--muted); font-size: 13px; display: block; }
+.classifier-page .sample-comparison strong { display: block; margin-top: 5px; font-size: 18px; font-weight: 500; }
+.classifier-page .sample-comparison p { color: var(--muted); font-size: 14px; line-height: 1.75; margin-top: 8px; }
+.classifier-page .batch-guidance { margin-block: 18px; }
+@media (max-width:600px) {
+  .classifier-page .mode-tabs button { font-size: 14px; gap: 7px; white-space: nowrap; }
+  .classifier-page .classifier-example { padding: 18px; }
+  .classifier-page .example-actions { grid-template-columns: minmax(0,1fr); }
+  .classifier-page .example-actions .btn { justify-content: center; }
+  .classifier-page .manual-features summary { font-size: 15px; }
+  .classifier-page .manual-features summary span { display: block; margin: 5px 0 0; }
+  .classifier-page .form-submit { flex-wrap: wrap; gap: 16px; }
+  .classifier-page .form-submit .btn-primary { width: 100%; justify-content: center; }
+}

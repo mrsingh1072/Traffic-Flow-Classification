@@ -41,6 +41,17 @@ Canonical routes: `#/overview`, `#/classifier`, `#/evaluation`, `#/datasets`, an
 - Dataset Explorer: configured dataset inventory, independent checkpoint/preprocessor availability, raw feature counts and types, test samples, and evaluated class labels.
 - About: research scope, architecture, limitations, and existing API reference.
 
+## Presenting the classifier
+
+1. Open **Traffic Classifier** and choose a dataset.
+2. In **Single record**, select a demo record and choose **Load example**.
+3. Choose **Classify traffic**. The result displays the model prediction, class scores, and the record's known dataset label. Predictions can disagree with that label.
+4. Expand **Review or edit features** only when you want to inspect or change the measured inputs. Editing removes the known-label comparison, since the edited record is no longer the original example.
+
+For file uploads, switch to **Batch JSON**, choose **Download sample JSON**, and import the downloaded `<dataset>-sample-batch.json` with the same dataset selected. Then choose **Classify batch**. **Load sample batch** provides the same feature records without needing a file. A file is an array of raw feature objects, with all schema keys and no target labels or API-request wrapper. A blank template is for advanced use and cannot be submitted unchanged.
+
+The example catalog in `src/data/classifier-examples.json` contains one record per class, selected with NumPy random seed 42 from each saved held-out test split. Raw feature values were matched back to the source CSV/ARFF and verified against the saved test arrays using the corresponding fitted preprocessor. Examples were not filtered by prediction correctness and are not a representative accuracy benchmark. Download the dataset-specific batch from the interface; the internal catalog itself is not an upload file.
+
 Single-record blanks are sent as null and handled by the saved imputer. At least one non-null value is required. Batch objects must include all schema keys with finite numbers, categorical strings, or null. A downloaded template contains nulls and requires values before submission. Confidence is the backend's softmax score, not a calibrated probability.
 
 All dataset counts and performance values come from the API. The application does not capture live network traffic. The network hero is explicitly illustrative.

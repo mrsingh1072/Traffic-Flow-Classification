@@ -1,282 +1,179 @@
-# CNN-Based Traffic Flow Classification in 5G Core Networks
+<div align="center">
+  <img src="frontend/public/favicon.svg" alt="TrafficFlow logo" width="88" height="88" />
+
+  <h1>TrafficFlow</h1>
+
+  <p><strong>CNN-Based Traffic Flow Classification in 5G Core Networks.</strong></p>
+  <p>Explore the network. Classify the signal.</p>
+
+  <img alt="React 19" src="https://img.shields.io/badge/React-19-181715?style=for-the-badge&amp;logo=react&amp;logoColor=F2EEE8" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-181715?style=for-the-badge&amp;logo=typescript&amp;logoColor=F2EEE8" />
+  <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-181715?style=for-the-badge&amp;logo=fastapi&amp;logoColor=F2EEE8" />
+  <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-D96C4F?style=for-the-badge&amp;logo=pytorch&amp;logoColor=080808" />
+
+  <p>
+    <a href="#overview">Overview</a> ·
+    <a href="#features">Features</a> ·
+    <a href="#getting-started">Getting Started</a> ·
+    <a href="#model-evaluation">Model Evaluation</a> ·
+    <a href="#author">Author</a>
+  </p>
+</div>
+
+---
 
 ## Overview
 
-This project explores Convolutional Neural Networks (CNNs) for network traffic classification using two public network traffic datasets: **UNSW-NB15** and **ISCX VPN-nonVPN**.
+**TrafficFlow** is a full-stack machine-learning project that classifies supplied network-flow records using dataset-specific **1D convolutional neural networks**. A React interface makes it possible to load real dataset examples, inspect their features, and run single-record or batch inference through a FastAPI backend.
 
-The system focuses on preprocessing network traffic features, training CNN-based classifiers, evaluating model performance, and providing predictions through a FastAPI backend.
+Built for exploring traffic classification and presenting the complete ML workflow, the project connects fitted preprocessing, trained checkpoints, evaluation results, and an interactive interface in one repository.
 
-The project also investigates how the amount of labeled training data affects classification performance by training models with different label fractions.
+> The animated 5G topology is illustrative. TrafficFlow classifies supplied feature records; it does not capture live traffic or monitor real network infrastructure.
 
-### Datasets
+## Features
 
-- **UNSW-NB15:** Classification of normal network traffic and multiple attack categories.
-- **ISCX VPN-nonVPN:** Classification of VPN and non-VPN network traffic using flow-based features.
+### Traffic classification
 
-The ISCX dataset experiments use four traffic-flow configurations: 15-second, 30-second, 60-second, and 120-second flows.
+- **Five dataset configurations:** UNSW-NB15 and ISCX VPN-nonVPN with 15s, 30s, 60s, and 120s flow windows.
+- **Guided examples:** load real held-out dataset records without manually entering every feature.
+- **Schema-driven forms:** dataset-specific inputs with a collapsible review/edit section and input validation.
+- **Single and batch inference:** classify one record or a JSON batch of 1–100 records.
+- **JSON workflow:** download sample batches or blank templates, import JSON, and export prediction results.
+- **Clear results:** predicted class, returned softmax confidence, and class-wise scores. Built-in examples show their original dataset labels separately.
+- **Useful feedback:** loading states, invalid-input protection, and retry actions for failed requests.
 
-## Project Objectives
+### Interface and network exploration
 
-- Prepare public network traffic datasets for machine learning.
-- Develop a consistent preprocessing pipeline for each dataset.
-- Train 1D CNN models for traffic classification.
-- Evaluate classification performance using standard machine learning metrics.
-- Investigate the effect of training-label availability on model performance.
-- Develop a FastAPI backend for traffic classification.
-- Provide prediction results, confidence scores, and evaluation metrics through API endpoints.
-- Provide a schema-driven frontend for classification and model evaluation.
+- **Three focused pages:** Overview, Traffic Classifier, and About.
+- **Custom SVG 5G globe:** rotating logical topology with UE, gNB, AMF, SMF, UPF, UDM, and DN nodes.
+- **Interactive Node Inspector:** select components, inspect relationships, trace the user plane, and toggle control-plane connections.
+- **Obsidian / Ember identity:** charcoal surfaces, warm typography, and restrained coral accents.
+- **Dark and light themes:** persistent theme preference, responsive navigation, and mobile layouts.
+- **Accessible interactions:** keyboard navigation, visible focus states, and reduced-motion support.
+
+### Machine-learning workflow
+
+- **TrafficCNN-1D:** separate trained CNN checkpoints for each dataset configuration.
+- **Fitted preprocessing:** saved imputation, numerical scaling, categorical encoding, and original class mappings.
+- **Evaluation tooling:** accuracy, precision, recall, F1, per-class reports, and confusion matrices.
+- **Label-fraction experiments:** training workflows for 10%, 25%, 50%, and 100% of training labels.
+
+## Preview
+
+![TrafficFlow Overview with its interactive logical 5G topology](docs/images/overview.png)
+
+*Overview in dark mode. The globe illustrates network architecture; it is separate from CNN inference.*
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[Dataset sample or supplied features] --> B[React interface]
+    B --> C[FastAPI]
+    C --> D[Fitted preprocessing]
+    D --> E[TrafficCNN-1D]
+    E --> F[Traffic class and softmax scores]
+    F --> B
+```
+
+The frontend obtains each dataset's raw feature schema from the API. The backend validates the input, applies the matching saved preprocessor, and runs the corresponding CNN checkpoint in evaluation mode. Existing class mappings determine the returned labels.
+
+## Technology Stack
+
+| Layer | Technologies |
+| --- | --- |
+| Frontend | React 19, TypeScript, Vite 8 |
+| Interface | CSS, Tailwind CSS tooling, Lucide React, Motion for React |
+| Network visualization | Custom SVG geometry and animations |
+| API | FastAPI, Pydantic, Uvicorn |
+| Machine learning | PyTorch, scikit-learn |
+| Data processing | NumPy, Pandas, Joblib |
+| Evaluation and plots | scikit-learn metrics, Matplotlib, Seaborn |
+
+This project uses local model and preprocessing artifacts. A database or external AI API key is not required for the current classification workflow.
+
+## Supported Datasets
+
+| Configuration | API dataset key | Task | Raw features |
+| --- | --- | --- | ---: |
+| UNSW-NB15 | `UNSW_NB15` | Normal traffic and attack-category classification | 42 |
+| ISCX 15s | `ISCX_15s` | Application and VPN/non-VPN traffic classification | 23 |
+| ISCX 30s | `ISCX_30s` | Application and VPN/non-VPN traffic classification | 23 |
+| ISCX 60s | `ISCX_60s` | Application and VPN/non-VPN traffic classification | 23 |
+| ISCX 120s | `ISCX_120s` | Application and VPN/non-VPN traffic classification | 23 |
+
+Feature names and types come from `GET /schema?dataset=<dataset_key>`. Records are measured flow statistics, not IP addresses, website URLs, or packet-capture files.
 
 ## Project Structure
 
 ```text
 Traffic-Flow-Classification/
 ├── backend/
-│   ├── main.py
-│   ├── train_cnn.py
-│   ├── evaluate_model.py
-│   ├── evaluate_all_datasets.py
-│   ├── visualize_results.py
-│   ├── test_api.py
-│   ├── test_all_datasets.py
-│   ├── test_api_validation.py
-│   ├── test_backend_ready.py
-│   ├── test_batch.py
-│   ├── models/
-│   └── results/
+│   ├── main.py                    # FastAPI routes and CNN inference
+│   ├── train_cnn.py               # Dataset and label-fraction experiments
+│   ├── evaluate_all_datasets.py   # Evaluation of serving checkpoints
+│   ├── models/                   # Trained checkpoints
+│   ├── results/                  # Stored evaluation metrics and figures
+│   └── test_*.py                 # API and artifact checks
 ├── datasets/
-│   ├── CSV Files/
-│   ├── processed/
-│   ├── preprocess_dataset.py
-│   └── verify_dataset.py
+│   ├── preprocess_dataset.py     # Dataset preparation and fitted pipelines
+│   ├── verify_dataset.py         # Processed-data checks
+│   └── processed/                # Preprocessors and local data.npz splits
+├── evaluation_results/           # Additional evaluation and candidate-model reports
+├── frontend/
+│   ├── public/                   # Favicon and public assets
+│   ├── src/
+│   │   ├── components/           # Navigation, theme, globe, and shared UI
+│   │   ├── data/                 # Real classifier demo examples
+│   │   ├── pages/                # Overview, Traffic Classifier, About
+│   │   └── services/             # Backend API client
+│   ├── scripts/                  # Route and API contract checks
+│   ├── .env.example
+│   └── package.json
+├── docs/images/                  # README screenshots
 ├── requirements.txt
-├── README.md
-└── venv/
+└── README.md
 ```
 
-*The structure above reflects the files and folders identified during development. Additional folders and files may exist locally.*
+## Getting Started
 
-## Methodology
+### Prerequisites
 
-### Phase 1: Dataset Preparation
+- **Python 3.11** and a virtual environment.
+- **Node.js 22.18+** with npm.
+- Matching model checkpoints and fitted preprocessors for the five configurations.
 
-1. Obtain the public datasets from their authorized sources.
-2. Inspect dataset formats, features, labels, and class distributions.
-3. Handle missing values and categorical features.
-4. Remove or handle duplicate records where appropriate.
-5. Fit preprocessing pipelines separately for each dataset.
-6. Transform traffic features into numerical representations suitable for CNN input.
-7. Save processed datasets and preprocessing artifacts.
-8. Prepare training, validation, and test splits.
-9. Verify processed data and check for exact overlap between splits.
+The commands below use **Windows PowerShell**, matching the project's development environment. The pinned Python requirements include Windows-specific packages.
 
-Processed datasets are stored under `datasets/processed/`. Each dataset has a saved `data.npz` file and a `preprocessor.joblib` artifact.
+### 1. Clone the repository
 
-### Phase 2: CNN Model Development
-
-A one-dimensional CNN (1D CNN) is used to classify traffic-flow feature vectors.
-
-The architecture includes:
-
-- 1D convolutional layers
-- Batch normalization
-- ReLU activation functions
-- Max pooling
-- Adaptive max pooling
-- Fully connected layers
-- Dropout for regularization
-- An output layer corresponding to the dataset's classes
-
-Separate models and preprocessing artifacts are maintained for the different dataset configurations.
-
-### Label-Fraction Experiments
-
-To investigate the impact of labeled training data, models were trained using four label fractions:
-
-- 10%
-- 25%
-- 50%
-- 100%
-
-The experiments cover five dataset configurations, resulting in 20 training configurations.
-
-### Phase 3: Model Evaluation
-
-Models are evaluated using:
-
-- Accuracy
-- Macro precision
-- Macro recall
-- Macro F1-score
-- Weighted F1-score
-- Confusion matrices
-- Per-class precision, recall, and F1-score
-
-Evaluation scripts save results under `backend/results/`, including dataset-level evaluation summaries and visualization artifacts.
-
-## Current Experimental Results
-
-The following results are from the processed held-out test splits evaluated during development.
-
-| Dataset | Test samples | Accuracy | Macro Precision | Macro Recall | Macro F1 | Weighted F1 |
-|---|---:|---:|---:|---:|---:|---:|
-| UNSW-NB15 | 55,945 | 71.96% | 53.85% | 44.38% | 40.97% | 74.28% |
-| ISCX-15s | 3,615 | 60.97% | 56.76% | 51.01% | 50.69% | 59.76% |
-| ISCX-30s | 2,728 | 61.40% | 57.25% | 52.86% | 53.44% | 60.48% |
-| ISCX-60s | 2,946 | 53.05% | 49.87% | 41.94% | 41.67% | 51.98% |
-| ISCX-120s | 1,919 | 57.48% | 53.85% | 43.19% | 43.52% | 54.51% |
-
-These metrics describe different dataset configurations and classification tasks. They should not be interpreted as a direct comparison of equivalent classification problems.
-
-**Performance note:** Macro F1 is lower than weighted F1 for several configurations, indicating that performance varies across classes. Further model analysis and improvements may be needed, particularly for minority traffic classes.
-
-## Phase 4: FastAPI Backend
-
-A FastAPI backend has been implemented to expose the trained models and their evaluation results.
-
-### Implemented Capabilities
-
-- Health checking
-- Dataset and model availability
-- Dataset-specific feature schemas
-- Single-record traffic prediction
-- Batch prediction
-- Overall evaluation metrics
-- Per-class evaluation metrics
-- Confusion-matrix data
-- Input validation and invalid-dataset handling
-
-The prediction pipeline accepts raw traffic features, applies the corresponding saved preprocessing pipeline, and passes the resulting features to the CNN model.
-
-Prediction responses include the predicted class, class identifier, confidence score, and class-wise scores where supported.
-
-**Confidence note:** The returned confidence is a softmax score and should not be interpreted as a calibrated probability.
-
-### API Endpoints
-
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/` | Root endpoint |
-| GET | `/health` | Backend health status |
-| GET | `/datasets` | Available dataset configurations |
-| GET | `/schema` | Default feature schema |
-| POST | `/predict` | Single-record prediction |
-| POST | `/predict/batch` | Batch traffic prediction |
-| GET | `/metrics` | Overall evaluation metrics |
-| GET | `/metrics/{dataset}/classes` | Per-class evaluation metrics |
-| GET | `/metrics/{dataset}/confusion-matrix` | Confusion-matrix data |
-
-Dataset-specific schemas are available through the schema endpoint using its supported query parameters.
-
-### API Testing
-
-The backend readiness test passed **15 out of 15 checks** during development.
-
-Verified checks included:
-
-- Health endpoint response
-- Model and preprocessing artifact availability
-- Dashboard metrics
-- Schema and prediction for all five dataset configurations
-- Rejection of invalid dataset names
-
-Additional testing confirmed successful batch prediction and successful responses from the per-class metrics and confusion-matrix endpoints for UNSW-NB15. The Python dependency consistency check also passed.
-
-These results verify the tested backend functionality; they do not constitute production deployment or security certification.
-
-## Installation and Setup
-
-### Requirements
-
-- Python 3.11
-- FastAPI
-- Uvicorn
-- PyTorch
-- NumPy
-- Pandas
-- Scikit-learn
-- Joblib
-
-The complete dependency list is maintained in `requirements.txt`.
-
-### 1. Clone or Obtain the Project
-
-Obtain the project files and place the datasets in their expected locations. Dataset access and redistribution must comply with the respective dataset terms.
-
-### 2. Create and Activate the Virtual Environment
-
-On Windows:
-
-```cmd
-cd /d D:\Traffic-Flow-Classification
-python -m venv venv
-venv\Scripts\activate
+```powershell
+git clone https://github.com/mrsingh1072/Traffic-Flow-Classification.git
+cd Traffic-Flow-Classification
 ```
 
-### 3. Install Dependencies
-
-```cmd
-python -m pip install -r requirements.txt
-python -m pip check
-```
-
-### 4. Run the Backend
+### 2. Install Python dependencies
 
 From the project root:
 
-```cmd
+```powershell
+python -m venv venv
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+.\venv\Scripts\python.exe -m pip check
+```
+
+### 3. Start the backend
+
+```powershell
 cd backend
-python -m uvicorn main:app --reload
+..\venv\Scripts\python.exe -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-The API will normally be available at:
+Leave this terminal running. Interactive API documentation is available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
 
-- **API base URL:** http://127.0.0.1:8000
-- **Swagger documentation:** http://127.0.0.1:8000/docs
-- **Health check:** http://127.0.0.1:8000/health
-- **Available datasets:** http://127.0.0.1:8000/datasets
-- **Evaluation metrics:** http://127.0.0.1:8000/metrics
+### 4. Start the frontend
 
-Keep the terminal running while using the API.
-
-## Running Tests
-
-With the virtual environment activated and the API server running, open another terminal at the project root.
-
-Run the backend readiness test:
-
-```cmd
-python backend\test_backend_ready.py
-```
-
-Run API validation tests:
-
-```cmd
-python backend\test_api_validation.py
-```
-
-Run dataset smoke tests:
-
-```cmd
-python backend\test_all_datasets.py
-```
-
-Check Python dependency consistency:
-
-```cmd
-python -m pip check
-```
-
-The batch prediction test can also be run using:
-
-```cmd
-python backend\test_batch.py
-```
-
-## Phase 5: Frontend Application
-
-The existing React frontend now includes Overview, Traffic Classifier, Model Evaluation, Dataset Explorer, and About workspaces in the Black Signal dark design system with Space Grotesk headings, Inter body, and horizontal desktop navigation. Single and batch predictions use the original FastAPI endpoints and dataset-specific schemas; charts and tables use returned evaluation data. A custom interactive SVG logical globe illustrates 5G components, with a node inspector, orbit control, layer visibility, and user-triggered packet traces, and layouts support desktop and mobile devices.
-
-See [frontend setup and verification](frontend/README.md) for complete instructions. With the backend running, start the frontend in a second terminal:
+Open another terminal at the project root:
 
 ```powershell
 cd frontend
@@ -284,38 +181,140 @@ npm ci
 npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
 ```
 
-Set `VITE_API_BASE_URL` using `frontend/.env.example` if the API is hosted elsewhere. `npm run build` runs strict TypeScript checks and creates the production bundle. All five canonical hash routes support reload and browser history. Local validation passed 5 route regression tests, 15 readiness checks, 8 API validation checks, and 48 cross-dataset contract checks. Browser checks covered prediction, batch result selection, evaluation, mobile layouts, and navigation.
+Open **[http://127.0.0.1:5173](http://127.0.0.1:5173)**.
 
-## Limitations and Future Work
+The API URL defaults to `http://127.0.0.1:8000`. To change it, create `frontend/.env` using `frontend/.env.example`:
 
-- Classification performance varies by dataset and traffic class.
-- Minority classes require further investigation and potentially improved training strategies.
-- Softmax confidence scores are not calibrated probabilities.
-- The current prediction API classifies supplied feature records; it does not directly capture live network traffic.
-- The frontend requires a reachable backend with the existing model and preprocessing artifacts.
-- Production deployment, authentication, security hardening, and monitoring require separate work.
+```dotenv
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
 
-Potential future improvements include class-imbalance handling, hyperparameter tuning, calibration analysis, additional evaluation, and integration with a live traffic-capture pipeline.
+For a different frontend origin, set the backend's `FRONTEND_ORIGINS` environment variable to a comma-separated list of allowed origins. Restart the affected server after changing environment settings.
 
-## Reproducibility
+### Required local artifacts
 
-For reproducible experiments:
+Each dataset uses these matching files:
 
-1. Use the documented Python environment and dependency versions.
-2. Obtain the datasets from their authorized sources.
-3. Run preprocessing before training.
-4. Retain the fitted preprocessing artifacts alongside the corresponding model checkpoints.
-5. Use the provided training and evaluation scripts.
-6. Preserve dataset splits and saved evaluation results for comparison.
+```text
+backend/models/<dataset_key>_100pct/model.pt
+datasets/processed/<dataset_key>/preprocessor.joblib
+```
 
-Dataset access and redistribution must comply with the respective dataset terms.
+For example, UNSW-NB15 uses `backend/models/UNSW_NB15_100pct/model.pt` and `datasets/processed/UNSW_NB15/preprocessor.joblib`. Check [the health endpoint](http://127.0.0.1:8000/health) for missing artifacts.
 
-## Project Status
+Raw CSV/ARFF datasets and processed `.npz` splits are excluded from Git. **Running inference with existing checkpoints and preprocessors does not require retraining.** Reproducing training or evaluation also requires the corresponding local data splits.
 
-- **Dataset preparation:** Completed
-- **CNN training:** Completed for the current experiment configurations
-- **Model evaluation:** Completed for the reported test splits
-- **FastAPI backend:** Core functionality implemented and tested
-- **Frontend:** Implemented; strict TypeScript production build verified
-- **End-to-end integration:** Verified locally against all five dataset configurations
-- **Production deployment:** Pending
+## Demo Workflow
+
+1. Open **Traffic Classifier** and select a dataset.
+2. Choose a **Demo record** and click **Load example**.
+3. Optionally expand **Review or edit features** to inspect the supplied values.
+4. Click **Classify Traffic** to obtain a real backend prediction.
+5. Compare the model prediction with the original label shown for an unedited built-in example.
+
+For batch inference, switch to **Batch JSON** and choose **Load sample batch**. Alternatively, use **Download sample JSON**, import that same file for the selected dataset, and classify it. Batch files contain a JSON array of feature objects; use `null` for missing values and include every schema field.
+
+Built-in examples are sampled from held-out records, not selected for prediction correctness. Their original labels are separate from the model's output. A model can misclassify an example.
+
+## Model Evaluation
+
+The table below summarizes the **stored held-out results for the serving 100% training-label checkpoints**. Values are rounded from the existing [evaluation artifacts](backend/results/all_datasets_evaluation); they are not live statistics or newly generated results.
+
+| Dataset | Test samples | Accuracy | Macro F1 |
+| --- | ---: | ---: | ---: |
+| UNSW-NB15 | 55,945 | 71.96% | 40.97% |
+| ISCX 15s | 3,615 | 60.97% | 50.69% |
+| ISCX 30s | 2,728 | 61.40% | 53.44% |
+| ISCX 60s | 2,946 | 53.05% | 41.67% |
+| ISCX 120s | 1,919 | 57.48% | 43.52% |
+
+Each checkpoint is evaluated on its corresponding saved test split with the original class ordering. Test arrays are already preprocessed. Training and validation data are excluded from final test metrics; inference uses `model.eval()` and `torch.no_grad()`.
+
+These datasets represent different tasks, so their scores are not directly comparable. Aggregate accuracy can conceal weaker minority-class detection. Softmax confidence is not a calibrated probability or a guarantee of correctness.
+
+Additional improvement experiments and candidate checkpoints are documented in [evaluation_results](evaluation_results/). They are separate from the models selected by `backend/main.py`; their presence does not change the serving model.
+
+### Reproduce experiments
+
+Obtain the source datasets under their respective access terms. The preprocessing script expects:
+
+- UNSW-NB15 training/testing CSVs under `datasets/CSV Files/Training and Testing Sets/`.
+- ISCX `TimeBasedFeatures-Dataset-{15s,30s,60s,120s}.arff` files under `datasets/Scenario B-ARFF/`.
+
+From the project root, run the relevant step explicitly:
+
+```powershell
+# Prepare splits and fitted preprocessors from source datasets.
+.\venv\Scripts\python.exe datasets/preprocess_dataset.py
+
+# Train the five dataset configurations at four label fractions.
+.\venv\Scripts\python.exe backend/train_cnn.py
+
+# Evaluate the serving 100% training-label checkpoints on saved test splits.
+.\venv\Scripts\python.exe backend/evaluate_all_datasets.py
+```
+
+These commands generate or update artifacts; they are **not required for the guided demo**. Preserve matching preprocessors, class mappings, model checkpoints, and original splits when reproducing results. Evaluation outputs are written to `backend/results/all_datasets_evaluation/`.
+
+## API Reference
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | `/health` | Model and preprocessor readiness |
+| GET | `/datasets` | Five configured datasets and artifact availability |
+| GET | `/schema?dataset=UNSW_NB15` | Raw feature names and types for the selected dataset |
+| POST | `/predict` | Classify one feature record using `dataset` and `features` |
+| POST | `/predict/batch` | Classify 1–100 records using `dataset` and `records` |
+| GET | `/metrics` | Stored dataset-level evaluation summaries |
+| GET | `/metrics/{dataset}/classes` | Per-class precision, recall, F1, and support |
+| GET | `/metrics/{dataset}/confusion-matrix` | Confusion-matrix labels and counts |
+
+See [FastAPI Swagger documentation](http://127.0.0.1:8000/docs) for request and response schemas while the backend is running. Detailed evaluation remains available through the API and saved reports; it is not a separate frontend page.
+
+## Verification
+
+From the project root:
+
+```powershell
+# Frontend route checks and TypeScript/production build.
+npm --prefix frontend run test:routes
+npm --prefix frontend run build
+
+# API checks: start the backend first and retain its required artifacts.
+.\venv\Scripts\python.exe backend/test_backend_ready.py
+.\venv\Scripts\python.exe backend/test_api_validation.py
+.\venv\Scripts\python.exe backend/test_all_datasets.py
+.\venv\Scripts\python.exe frontend/scripts/verify_api.py
+```
+
+The current frontend routes are `#/overview`, `#/classifier`, and `#/about`.
+
+## Scope and Future Work
+
+TrafficFlow is a portfolio and academic project for demonstrating dataset-based CNN classification. It does not currently capture live traffic, inspect a deployed 5G network, or provide a production intrusion-detection service.
+
+Possible future work includes class-imbalance improvements, confidence calibration, independent evaluation on new data, and a separately designed traffic-capture integration. Authentication, deployment hardening, and operational monitoring are outside the current implementation.
+
+## Contributing
+
+1. Fork the repository and create a focused branch.
+2. Keep changes consistent with the existing dataset schemas and preprocessing contracts.
+3. Run the checks relevant to your changes and document their results.
+4. Open a pull request explaining the change and its effect.
+
+Dataset access and redistribution remain subject to the original providers' terms. Only load trusted model and preprocessing artifacts.
+
+## Author
+
+**Saurabh**
+
+[GitHub](https://github.com/mrsingh1072) · [LinkedIn](https://www.linkedin.com/in/saurabh-singh-959b48323/) · [Instagram](https://www.instagram.com/mr__singh1072/)
+
+For questions or bugs, [open an issue](https://github.com/mrsingh1072/Traffic-Flow-Classification/issues).
+
+---
+
+<div align="center">
+  <strong>Made with ❤️ by Saurabh</strong><br />
+  <sub>Designed and developed with curiosity, passion, and a love for technology.</sub>
+</div>
